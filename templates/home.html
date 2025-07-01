@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Welcome to <span class="highlight">NamasteTap</span>
+            </h1>
+            <p class="hero-description">
+                A modern Django web application built with passion and precision. 
+                Experience the power of Python web development.
+            </p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-primary">Learn More</a>
+                <a href="/admin/" class="btn btn-secondary">Admin Panel</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-elements">
+                <div class="floating-element element-1">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div class="floating-element element-2">
+                    <i class="fab fa-django"></i>
+                </div>
+                <div class="floating-element element-3">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="floating-element element-4">
+                    <i class="fas fa-database"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="section-header">
+            <h2>About NamasteTap</h2>
+            <p>Built with cutting-edge technology</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fab fa-python"></i>
+                </div>
+                <h3>Python Powered</h3>
+                <p>Built using Python 3.13, leveraging the latest features and performance improvements.</p>
+            </div>
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fab fa-django"></i>
+                </div>
+                <h3>Django Framework</h3>
+                <p>Utilizing Django 5.2 for rapid development with security and scalability in mind.</p>
+            </div>
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Responsive Design</h3>
+                <p>Modern, mobile-first design that works seamlessly across all devices.</p>
+            </div>
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Fast & Secure</h3>
+                <p>Optimized for performance with built-in security features and best practices.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <p>What we offer</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Full-stack web development using modern technologies and frameworks.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Backend Solutions</h3>
+                <p>Robust backend systems with Django REST framework and API development.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Database Design</h3>
+                <p>Efficient database architecture and optimization for your applications.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="features-content">
+            <div class="features-text">
+                <h2>Why Choose NamasteTap?</h2>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Modern Django Framework</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Responsive Design</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Admin Interface</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Secure & Scalable</span>
+                    </div>
+                </div>
+            </div>
+            <div class="features-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">% Python</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="5">0</span>
+                    <span class="stat-label">Django 5.2</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="24">0</span>
+                    <span class="stat-label">24/7 Ready</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <p>Ready to start your next project?</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>contact@namastetap.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>GitHub</h4>
+                        <p>github.com/BHAVIADWANI</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Framework</h4>
+                        <p>Django 5.2.3</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-cta">
+                <h3>Ready to build something amazing?</h3>
+                <p>Let's create your next web application together.</p>
+                <a href="/admin/" class="btn btn-primary">Access Admin Panel</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

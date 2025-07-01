@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - NamasteTap{% endblock %}
+
+{% block content %}
+<!-- Contact Hero Section -->
+<section class="page-hero contact-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Get In Touch</h1>
+            <p>Ready to start your next Django project? Let's talk!</p>
+            <div class="breadcrumb">
+                <a href="{% url 'main:home' %}">Home</a>
+                <span>/</span>
+                <span>Contact</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Content Section -->
+<section class="contact-content">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <div class="form-header">
+                    <h2>Send us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="web-development">Web Development Project</option>
+                            <option value="api-development">API Development</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="support">Technical Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Project Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range</option>
+                            <option value="under-1k">Under $1,000</option>
+                            <option value="1k-5k">$1,000 - $5,000</option>
+                            <option value="5k-10k">$5,000 - $10,000</option>
+                            <option value="10k-plus">$10,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info-section">
+                <div class="contact-info-card">
+                    <h3>Contact Information</h3>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-content">
+                                <h4>Email</h4>
+                                <p>adwanibhavesh61@outlook.com</p>
+                                <span class="response-time">Response within 24 hours</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="method-content">
+                                <h4>GitHub</h4>
+                                <p>github.com/BHAVIADWANI</p>
+                                <span class="response-time">View our projects</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="method-content">
+                                <h4>Admin Panel</h4>
+                                <p>Demo Available</p>
+                                <span class="response-time">
+                                    <a href="/admin/" class="admin-link">Access Demo</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Inquiry Card -->
+                <div class="project-inquiry-card">
+                    <h3>Project Inquiry</h3>
+                    <p>Not sure what you need? Schedule a free consultation to discuss your project requirements.</p>
+                    <div class="inquiry-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Free 30-minute consultation</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Project scope assessment</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Technology recommendations</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Timeline and budget estimate</span>
+                        </div>
+                    </div>
+                    <a href="#contactForm" class="btn btn-outline">Schedule Consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="contact-faq">
+    <div class="container">
+        <div class="section-header">
+            <h2>Common Questions</h2>
+            <p>Quick answers to frequently asked questions</p>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Response Time</h3>
+                <p>We typically respond to all inquiries within 24 hours during business days.</p>
+            </div>
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3>Pricing</h3>
+                <p>All consultations are free. Project pricing is provided after understanding your requirements.</p>
+            </div>
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Project Process</h3>
+                <p>We follow a structured process from discovery to deployment with regular updates.</p>
+            </div>
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Confidentiality</h3>
+                <p>All project discussions are confidential. We can sign NDAs if required.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Areas Section -->
+<section class="service-areas">
+    <div class="container">
+        <div class="service-content">
+            <div class="service-text">
+                <h2>What We Can Help You With</h2>
+                <div class="service-list">
+                    <div class="service-category">
+                        <h4>Web Development</h4>
+                        <ul>
+                            <li>Custom Django Applications</li>
+                            <li>E-commerce Solutions</li>
+                            <li>Content Management Systems</li>
+                            <li>Portfolio Websites</li>
+                        </ul>
+                    </div>
+                    <div class="service-category">
+                        <h4>API Development</h4>
+                        <ul>
+                            <li>REST API Development</li>
+                            <li>Third-party Integrations</li>
+                            <li>Microservices Architecture</li>
+                            <li>API Documentation</li>
+                        </ul>
+                    </div>
+                    <div class="service-category">
+                        <h4>Consultation</h4>
+                        <ul>
+                            <li>Technology Assessment</li>
+                            <li>Code Review</li>
+                            <li>Performance Optimization</li>
+                            <li>Security Audit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="service-stats">
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Response Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="contact-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Build Something Amazing?</h2>
+            <p>Let's turn your ideas into reality with the power of Django.</p>
+            <div class="cta-buttons">
+                <a href="#contactForm" class="btn btn-primary">Start Your Project</a>
+                <a href="{% url 'main:services' %}" class="btn btn-secondary">View Services</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

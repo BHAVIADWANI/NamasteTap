@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - NamasteTap{% endblock %}
+
+{% block content %}
+<!-- About Hero Section -->
+<section class="page-hero about-hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>About NamasteTap</h1>
+            <p>Discover the story behind our Django-powered web application</p>
+            <div class="breadcrumb">
+                <a href="{% url 'main:home' %}">Home</a>
+                <span>/</span>
+                <span>About</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="our-story">
+    <div class="container">
+        <div class="story-content">
+            <div class="story-text">
+                <h2>Our Journey</h2>
+                <p class="lead">NamasteTap was born from a passion for creating exceptional web experiences using modern Python technologies.</p>
+                <p>We believe in the power of Django to create scalable, secure, and maintainable web applications. Our journey began with a simple idea: to demonstrate the elegance and efficiency of Python web development through a beautifully crafted application.</p>
+                <p>Every line of code is written with purpose, every design element is crafted with care, and every feature is built with the user in mind.</p>
+                
+                <div class="story-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>Innovation</h4>
+                            <p>Constantly exploring new technologies and methodologies</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>Security</h4>
+                            <p>Built with Django's robust security features at its core</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="highlight-content">
+                            <h4>User-Centric</h4>
+                            <p>Every decision is made with the end user in mind</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="story-image">
+                <div class="image-placeholder">
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python 3.13</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-django"></i>
+                            <span>Django 5.2</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-database"></i>
+                            <span>SQLite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Stack Section -->
+<section class="tech-stack-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Technology Stack</h2>
+            <p>Powered by modern and reliable technologies</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-logo">
+                    <i class="fab fa-python"></i>
+                </div>
+                <h3>Python</h3>
+                <p>Version 3.13.3</p>
+                <p class="tech-description">The backbone of our application, providing clean syntax and powerful libraries.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-logo">
+                    <i class="fab fa-django"></i>
+                </div>
+                <h3>Django</h3>
+                <p>Version 5.2.3</p>
+                <p class="tech-description">A high-level Python web framework that encourages rapid development.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-logo">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>SQLite</h3>
+                <p>Default Database</p>
+                <p class="tech-description">Lightweight, reliable database solution perfect for development.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-logo">
+                    <i class="fab fa-html5"></i>
+                </div>
+                <h3>Frontend</h3>
+                <p>HTML5, CSS3, JS</p>
+                <p class="tech-description">Modern frontend technologies for responsive and interactive design.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Meet the Developer</h2>
+            <p>The mind behind NamasteTap</p>
+        </div>
+        <div class="team-content">
+            <div class="team-member">
+                <div class="member-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="member-info">
+                    <h3>Bhavi Adwani</h3>
+                    <p class="member-role">Full Stack Developer</p>
+                    <p class="member-bio">Passionate about creating efficient and elegant web solutions using Python and Django. Committed to writing clean, maintainable code and delivering exceptional user experiences.</p>
+                    <div class="member-skills">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">Database Design</span>
+                    </div>
+                    <div class="member-links">
+                        <a href="https://github.com/BHAVIADWANI" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:adwanibhavesh61@outlook.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Our Values</h2>
+            <p>What drives us to excel</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Clean Code</h3>
+                <p>We believe in writing code that is not only functional but also readable, maintainable, and elegant.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3>Performance</h3>
+                <p>Every feature is optimized for speed and efficiency, ensuring the best possible user experience.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>User Experience</h3>
+                <p>We prioritize intuitive design and seamless interactions in everything we build.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Continuous Learning</h3>
+                <p>We stay updated with the latest technologies and best practices in web development.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

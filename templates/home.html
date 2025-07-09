@@ -14,8 +14,13 @@
                 Experience the power of Python web development.
             </p>
             <div class="hero-buttons">
-                <a href="#about" class="btn btn-primary">Learn More</a>
-                <a href="/admin/" class="btn btn-secondary">Admin Panel</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'main:dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+                    <a href="{% url 'main:about' %}" class="btn btn-secondary">Learn More</a>
+                {% else %}
+                    <a href="{% url 'main:signup' %}" class="btn btn-primary">Get Started</a>
+                    <a href="{% url 'main:login' %}" class="btn btn-secondary">Login</a>
+                {% endif %}
             </div>
         </div>
         <div class="hero-image">
@@ -193,7 +198,11 @@
             <div class="contact-cta">
                 <h3>Ready to build something amazing?</h3>
                 <p>Let's create your next web application together.</p>
-                <a href="/admin/" class="btn btn-primary">Access Admin Panel</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'main:dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+                {% else %}
+                    <a href="{% url 'main:signup' %}" class="btn btn-primary">Join Us Today</a>
+                {% endif %}
             </div>
         </div>
     </div>

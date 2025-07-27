@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User Details - {{ user_detail.get_full_name|default:user_detail.username }} - TapOne3{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Back Button -->
+            <div class="mb-4">
+                <a href="{% url 'main:manage_users' %}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left me-2"></i>Back to User Management
+                </a>
+            </div>
+
+            <!-- User Details Card -->
+            <div class="card glass">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="avatar-container me-3">
+                            {% if profile.profile_picture %}
+                                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="avatar-large">
+                            {% else %}
+                                <div class="avatar-large bg-gradient d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-user fa-2x text-white"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h2 class="text-gradient mb-1">{{ user_detail.get_full_name|default:user_detail.username }}</h2>
+                            <p class="text-muted mb-0">
+                                <i class="fas fa-envelope me-2"></i>{{ user_detail.email }}
+                            </p>
+                            <div class="mt-2">
+                                {% if user_detail.is_admin_user %}
+                                    <span class="badge bg-primary">Admin User</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">Standard User</span>
+                                {% endif %}
+                                {% if user_detail.is_active %}
+                                    <span class="badge bg-success">Active</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Inactive</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Information -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="text-light mb-3">Account Information</h5>
+                            <div class="info-item">
+                                <strong>Username:</strong>
+                                <span class="text-muted">{{ user_detail.username }}</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Email:</strong>
+                                <span class="text-muted">{{ user_detail.email }}</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Date Joined:</strong>
+                                <span class="text-muted">{{ user_detail.date_joined|date:"F d, Y" }}</span>
+                            </div>
+                            <div class="info-item">
+                                <strong>Last Login:</strong>
+                                <span class="text-muted">
+                                    {% if user_detail.last_login %}
+                                        {{ user_detail.last_login|date:"F d, Y g:i A" }}
+                                    {% else %}
+                                        Never
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="text-light mb-3">Profile Information</h5>
+                            {% if profile %}
+                                <div class="info-item">
+                                    <strong>Phone:</strong>
+                                    <span class="text-muted">{{ profile.phone|default:"Not provided" }}</span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>Company:</strong>
+                                    <span class="text-muted">{{ profile.company|default:"Not provided" }}</span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>Position:</strong>
+                                    <span class="text-muted">{{ profile.position|default:"Not provided" }}</span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>Bio:</strong>
+                                    <span class="text-muted">{{ profile.bio|default:"Not provided" }}</span>
+                                </div>
+                            {% else %}
+                                <p class="text-muted">No profile information available.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="{% url 'main:manage_users' %}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Users
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

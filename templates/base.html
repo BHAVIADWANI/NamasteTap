@@ -57,11 +57,14 @@
                                 <li><a class="dropdown-item" href="{% url 'main:profile' %}">
                                     <i class="fas fa-user me-2"></i>Profile
                                 </a></li>
-                                {% if user.is_admin_user %}
+                            </ul>
+                        </li>
+                        {% if user.is_admin_user %}
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">
                                 <i class="fas fa-cog"></i> Admin
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu glass">
                                 <li><a class="dropdown-item" href="{% url 'main:manage_users' %}">
                                     <i class="fas fa-users me-2"></i>Manage Users
                                 </a></li>
@@ -73,7 +76,7 @@
                                 </a></li>
                             </ul>
                         </li>
-                    {% endif %}
+                        {% endif %}
                     <li class="nav-item">
                         <a href="{% url 'main:logout' %}" class="nav-link logout-link">
                             <i class="fas fa-sign-out-alt"></i> Logout
@@ -95,8 +98,6 @@
         </div>
     </nav>
 
-    <!-- Messages -->
-    {% if messages %}
     <!-- Messages -->
     {% if messages %}
         <div class="container mt-3">

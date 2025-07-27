@@ -1,0 +1,346 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Manage NFC Cards - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-1">Manage NFC Cards</h2>
+                    <p class="text-muted mb-0">Physical card inventory and status tracking</p>
+                </div>
+                <div>
+                    <a href="{% url 'main:create_nfc_cards' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Create New Cards
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Filters -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <form method="get" class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Filter by Status:</label>
+                            <select name="status" class="form-select">
+                                <option value="">All Statuses</option>
+                                {% for status_key, status_name in status_choices %}
+                                    <option value="{{ status_key }}" {% if current_status == status_key %}selected{% endif %}>
+                                        {{ status_name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Filter by Type:</label>
+                            <select name="card_type" class="form-select">
+                                <option value="">All Types</option>
+                                {% for type_key, type_name in card_type_choices %}
+                                    <option value="{{ type_key }}" {% if current_type == type_key %}selected{% endif %}>
+                                        {{ type_name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-outline-primary me-2">
+                                <i class="fas fa-filter me-2"></i>Filter
+                            </button>
+                            <a href="{% url 'main:manage_nfc_cards' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-times me-2"></i>Clear
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Stats Summary -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card bg-primary text-white">
+                        <div class="stat-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ total_cards }}</h3>
+                            <p>Total Cards</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card bg-success text-white">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ page_obj.paginator.count }}</h3>
+                            <p>Filtered Results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cards Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">NFC Card Inventory</h5>
+                </div>
+                <div class="card-body p-0">
+                    {% if page_obj %}
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Registration Code</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Batch #</th>
+                                        <th>Manufactured</th>
+                                        <th>Customer</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for card in page_obj %}
+                                        <tr>
+                                            <td>
+                                                <code class="registration-code">{{ card.registration_code }}</code>
+                                                <button onclick="copyToClipboard('{{ card.registration_code }}')" 
+                                                        class="btn btn-sm btn-outline-secondary ms-2">
+                                                    <i class="fas fa-copy"></i>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-type-{{ card.card_type }}">
+                                                    {% if card.card_type == 'pvc' %}
+                                                        <i class="fas fa-credit-card me-1"></i>
+                                                    {% elif card.card_type == 'wood' %}
+                                                        <i class="fas fa-tree me-1"></i>
+                                                    {% else %}
+                                                        <i class="fas fa-medal me-1"></i>
+                                                    {% endif %}
+                                                    {{ card.get_card_type_display }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge status-{{ card.status }}">
+                                                    {{ card.get_status_display }}
+                                                </span>
+                                            </td>
+                                            <td>{{ card.batch_number|default:"-" }}</td>
+                                            <td>{{ card.manufactured_date|date:"M d, Y H:i" }}</td>
+                                            <td>
+                                                {% if card.customer_email %}
+                                                    <div class="small">
+                                                        <strong>{{ card.customer_email }}</strong><br>
+                                                        {% if card.customer_phone %}{{ card.customer_phone }}{% endif %}
+                                                    </div>
+                                                {% else %}
+                                                    <span class="text-muted">-</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    {% if card.status == 'manufactured' or card.status == 'delivered' %}
+                                                        <a href="{{ card.get_registration_url }}" 
+                                                           class="btn btn-outline-primary" target="_blank">
+                                                            <i class="fas fa-link"></i> Registration URL
+                                                        </a>
+                                                    {% endif %}
+                                                    
+                                                    {% if card.digital_card %}
+                                                        <a href="{% url 'main:view_card' card.digital_card.url_slug %}" 
+                                                           class="btn btn-success" target="_blank">
+                                                            <i class="fas fa-eye"></i> View Card
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        {% if page_obj.has_other_pages %}
+                            <div class="card-footer">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center mb-0">
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                            </li>
+                                        {% endif %}
+                                        
+                                        {% for num in page_obj.paginator.page_range %}
+                                            {% if page_obj.number == num %}
+                                                <li class="page-item active">
+                                                    <span class="page-link">{{ num }}</span>
+                                                </li>
+                                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        
+                                        {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-credit-card fa-3x text-muted mb-3"></i>
+                            <h5>No NFC Cards Found</h5>
+                            <p class="text-muted">Create your first batch of NFC cards to get started.</p>
+                            <a href="{% url 'main:create_nfc_cards' %}" class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i>Create New Cards
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.stat-card {
+    padding: 1.5rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+    opacity: 0.8;
+}
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.stat-info p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.registration-code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background: #f8f9fa;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+}
+
+.badge-type-pvc {
+    background: #007bff;
+    color: white;
+}
+
+.badge-type-wood {
+    background: #28a745;
+    color: white;
+}
+
+.badge-type-metal {
+    background: #ffc107;
+    color: #212529;
+}
+
+.status-manufactured {
+    background: #6c757d;
+    color: white;
+}
+
+.status-shipped {
+    background: #17a2b8;
+    color: white;
+}
+
+.status-delivered {
+    background: #fd7e14;
+    color: white;
+}
+
+.status-registered {
+    background: #28a745;
+    color: white;
+}
+
+.status-active {
+    background: #198754;
+    color: white;
+}
+
+.status-inactive {
+    background: #dc3545;
+    color: white;
+}
+</style>
+
+<script>
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('Registration code copied to clipboard!');
+    });
+}
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        z-index: 9999;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+    }
+    
+    @keyframes slideOut {
+        from { transform: translateX(0); }
+        to { transform: translateX(100%); }
+    }
+`;
+document.head.appendChild(style);
+</script>
+{% endblock %}

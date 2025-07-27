@@ -1,210 +1,333 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
+
+{% block title %}TapOne3 - Smart NFC Business Cards{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<section id="home" class="hero">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                Welcome to <span class="highlight">NamasteTap</span>
-            </h1>
-            <p class="hero-description">
-                A modern Django web application built with passion and precision. 
-                Experience the power of Python web development.
-            </p>
-            <div class="hero-buttons">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'main:dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
-                    <a href="{% url 'main:about' %}" class="btn btn-secondary">Learn More</a>
-                {% else %}
-                    <a href="{% url 'main:signup' %}" class="btn btn-primary">Get Started</a>
-                    <a href="{% url 'main:login' %}" class="btn btn-secondary">Login</a>
-                {% endif %}
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6 hero-content animate-fade-up">
+                <h1 class="display-4 fw-bold mb-4">
+                    Transform Your Networking with Smart NFC Business Cards
+                </h1>
+                <p class="lead mb-4">
+                    Create stunning digital business cards that work with any smartphone. No app required.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a href="{% url 'main:signup' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket me-2"></i>Get Your Smart Card Today
+                    </a>
+                    <a href="#how-it-works" class="btn btn-outline btn-lg">
+                        <i class="fas fa-play me-2"></i>See How It Works
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Cards Created</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Companies</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="hero-image">
-            <div class="floating-elements">
-                <div class="floating-element element-1">
-                    <i class="fab fa-python"></i>
-                </div>
-                <div class="floating-element element-2">
-                    <i class="fab fa-django"></i>
-                </div>
-                <div class="floating-element element-3">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="floating-element element-4">
-                    <i class="fas fa-database"></i>
+            <div class="col-lg-6 text-center animate-slide-left">
+                <div class="hero-image floating">
+                    <img src="{% static 'images/hero/futuristic-nfc.svg' %}" alt="Futuristic NFC Technology" class="img-fluid" style="max-height: 500px;">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- About Section -->
-<section id="about" class="about">
+<!-- Value Propositions -->
+<section class="py-5">
     <div class="container">
-        <div class="section-header">
-            <h2>About NamasteTap</h2>
-            <p>Built with cutting-edge technology</p>
-        </div>
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="card-icon">
-                    <i class="fab fa-python"></i>
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="glass-card h-100 p-4">
+                    <div class="text-gradient mb-3">
+                        <i class="fas fa-bolt fa-3x"></i>
+                    </div>
+                    <h5 class="card-title text-gradient">Instant Sharing</h5>
+                    <p class="card-text">Tap to share all your contact details instantly with any smartphone</p>
                 </div>
-                <h3>Python Powered</h3>
-                <p>Built using Python 3.13, leveraging the latest features and performance improvements.</p>
             </div>
-            <div class="about-card">
-                <div class="card-icon">
-                    <i class="fab fa-django"></i>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="glass-card h-100 p-4">
+                    <div class="text-gradient mb-3">
+                        <i class="fas fa-sync-alt fa-3x"></i>
+                    </div>
+                    <h5 class="card-title text-gradient">Always Updated</h5>
+                    <p class="card-text">Change your information anytime, everywhere - updates automatically</p>
                 </div>
-                <h3>Django Framework</h3>
-                <p>Utilizing Django 5.2 for rapid development with security and scalability in mind.</p>
             </div>
-            <div class="about-card">
-                <div class="card-icon">
-                    <i class="fas fa-mobile-alt"></i>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="glass-card h-100 p-4">
+                    <div class="text-gradient mb-3">
+                        <i class="fas fa-leaf fa-3x"></i>
+                    </div>
+                    <h5 class="card-title text-gradient">Eco-Friendly</h5>
+                    <p class="card-text">Reduce paper waste with digital alternatives that help the environment</p>
                 </div>
-                <h3>Responsive Design</h3>
-                <p>Modern, mobile-first design that works seamlessly across all devices.</p>
             </div>
-            <div class="about-card">
-                <div class="card-icon">
-                    <i class="fas fa-rocket"></i>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="glass-card h-100 p-4">
+                    <div class="text-gradient mb-3">
+                        <i class="fas fa-star fa-3x"></i>
+                    </div>
+                    <h5 class="card-title text-gradient">Professional</h5>
+                    <p class="card-text">Make a lasting impression with interactive, modern business cards</p>
                 </div>
-                <h3>Fast & Secure</h3>
-                <p>Optimized for performance with built-in security features and best practices.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Services Section -->
-<section id="services" class="services">
+<!-- How It Works Section -->
+<section id="how-it-works" class="py-5" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);">
     <div class="container">
-        <div class="section-header">
-            <h2>Our Services</h2>
-            <p>What we offer</p>
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">How It Works</h2>
+                <p class="lead">Get started with your smart business card in 4 simple steps</p>
+            </div>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-globe"></i>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center glass-card p-4 h-100">
+                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
+                        <span class="fs-3 fw-bold">1</span>
+                    </div>
+                    <h5 class="text-gradient">Order Your Card</h5>
+                    <p class="text-muted">Choose from our range of premium NFC cards</p>
                 </div>
-                <h3>Web Development</h3>
-                <p>Full-stack web development using modern technologies and frameworks.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-server"></i>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center glass-card p-4 h-100">
+                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
+                        <span class="fs-3 fw-bold">2</span>
+                    </div>
+                    <h5 class="text-gradient">Register Online</h5>
+                    <p class="text-muted">Use your unique activation code to set up your profile</p>
                 </div>
-                <h3>Backend Solutions</h3>
-                <p>Robust backend systems with Django REST framework and API development.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-database"></i>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center glass-card p-4 h-100">
+                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
+                        <span class="fs-3 fw-bold">3</span>
+                    </div>
+                    <h5 class="text-gradient">Customize</h5>
+                    <p class="text-muted">Add your photo, contact details, and company information</p>
                 </div>
-                <h3>Database Design</h3>
-                <p>Efficient database architecture and optimization for your applications.</p>
             </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center glass-card p-4 h-100">
+                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
+                        <span class="fs-3 fw-bold">4</span>
+                    </div>
+                    <h5 class="text-gradient">Start Networking</h5>
+                    <p class="text-muted">Tap to share with anyone, anywhere</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'main:signup' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-arrow-right me-2"></i>Get Started Now
+            </a>
         </div>
     </div>
 </section>
 
 <!-- Features Section -->
-<section class="features">
+<section class="py-5">
     <div class="container">
-        <div class="features-content">
-            <div class="features-text">
-                <h2>Why Choose NamasteTap?</h2>
-                <div class="feature-list">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Modern Django Framework</span>
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">Powerful Features</h2>
+                <p class="lead">Everything you need for modern professional networking</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img src="{% static 'images/icons/nfc-technology.svg' %}" alt="NFC Technology" class="img-fluid floating" style="max-width: 80px;">
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Responsive Design</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Admin Interface</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Secure & Scalable</span>
+                    <div class="col-9">
+                        <h5 class="text-gradient">NFC Technology</h5>
+                        <p class="text-muted">Simply tap your card on any smartphone to instantly share your contact information</p>
                     </div>
                 </div>
             </div>
-            <div class="features-stats">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="100">0</span>
-                    <span class="stat-label">% Python</span>
+            <div class="col-lg-6 mb-4">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img src="{% static 'images/icons/digital-profiles.svg' %}" alt="Digital Profiles" class="img-fluid floating" style="max-width: 80px; animation-delay: 0.5s;">
+                    </div>
+                    <div class="col-9">
+                        <h5 class="text-gradient">Digital Profiles</h5>
+                        <p class="text-muted">Create comprehensive digital business cards with photos, social links, and company information</p>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="5">0</span>
-                    <span class="stat-label">Django 5.2</span>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img src="{% static 'images/features/analytics-dashboard.svg' %}" alt="Analytics Dashboard" class="img-fluid floating" style="max-width: 80px; animation-delay: 1s;">
+                    </div>
+                    <div class="col-9">
+                        <h5 class="text-gradient">Analytics Dashboard</h5>
+                        <p class="text-muted">Track who viewed your card and when they accessed your information</p>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="24">0</span>
-                    <span class="stat-label">24/7 Ready</span>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img src="{% static 'images/icons/custom-branding.svg' %}" alt="Custom Branding" class="img-fluid floating" style="max-width: 80px; animation-delay: 1.5s;">
+                    </div>
+                    <div class="col-9">
+                        <h5 class="text-gradient">Custom Branding</h5>
+                        <p class="text-muted">Match your card design to your brand with custom colors and logos</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact">
+<!-- Pricing Section -->
+<section class="py-5 bg-light">
     <div class="container">
-        <div class="section-header">
-            <h2>Get In Touch</h2>
-            <p>Ready to start your next project?</p>
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">Choose Your Plan</h2>
+                <p class="lead">Flexible pricing for individuals and teams</p>
+            </div>
         </div>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Email</h4>
-                        <p>contact@namastetap.com</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>GitHub</h4>
-                        <p>github.com/BHAVIADWANI</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Framework</h4>
-                        <p>Django 5.2.3</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body text-center p-4">
+                        <h5 class="card-title">Individual</h5>
+                        <div class="my-3">
+                            <span class="h2">₹499</span>
+                            <small class="text-muted">/card</small>
+                        </div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Single professional card</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Digital profile</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Basic analytics</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>NFC + QR code</li>
+                        </ul>
+                        <a href="{% url 'main:signup' %}" class="btn btn-outline-primary">Get Started</a>
                     </div>
                 </div>
             </div>
-            <div class="contact-cta">
-                <h3>Ready to build something amazing?</h3>
-                <p>Let's create your next web application together.</p>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'main:dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
-                {% else %}
-                    <a href="{% url 'main:signup' %}" class="btn btn-primary">Join Us Today</a>
-                {% endif %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-0 shadow border-primary">
+                    <div class="card-header bg-primary text-white text-center">
+                        <small>MOST POPULAR</small>
+                    </div>
+                    <div class="card-body text-center p-4">
+                        <h5 class="card-title">Team</h5>
+                        <div class="my-3">
+                            <span class="h2">₹1,999</span>
+                            <small class="text-muted">/5 cards</small>
+                        </div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Multiple cards for teams</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Team management</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Advanced analytics</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom branding</li>
+                        </ul>
+                        <a href="{% url 'main:signup' %}" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body text-center p-4">
+                        <h5 class="card-title">Enterprise</h5>
+                        <div class="my-3">
+                            <span class="h2">Custom</span>
+                            <small class="text-muted">/pricing</small>
+                        </div>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Bulk orders</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom branding</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Priority support</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>API access</li>
+                        </ul>
+                        <a href="{% url 'main:contact' %}" class="btn btn-outline-primary">Contact Sales</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-2">Ready to Transform Your Networking?</h3>
+                <p class="mb-0">Join hundreds of professionals who have upgraded to smart business cards.</p>
+            </div>
+            <div class="col-lg-4 text-end">
+                <a href="{% url 'main:signup' %}" class="btn btn-light btn-lg">
+                    <i class="fas fa-arrow-right me-2"></i>Get Your Smart Card
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.hero-section {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.min-vh-50 {
+    min-height: 50vh;
+}
+
+.hero-image {
+    position: relative;
+    display: inline-block;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .hero-section {
+        padding: 3rem 0;
+    }
+}
+</style>
 {% endblock %}

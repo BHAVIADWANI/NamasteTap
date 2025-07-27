@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register Your TapOne3 Card{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-gradient-primary text-white text-center py-4">
+                    <i class="fas fa-wifi text-gradient-green fa-3x mb-3 nfc-pulse"></i>
+                    <h2 class="mb-0">Activate Your TapOne3 Card</h2>
+                    <p class="mb-0 opacity-90">Registration Code: <strong>{{ nfc_card.registration_code }}</strong></p>
+                </div>
+                
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <div class="feature-icon bg-light rounded-circle mx-auto mb-2" style="width: 60px; height: 60px; line-height: 60px;">
+                                    {% if nfc_card.card_type == 'pvc' %}
+                                        <i class="fas fa-credit-card text-primary"></i>
+                                    {% elif nfc_card.card_type == 'wood' %}
+                                        <i class="fas fa-tree text-success"></i>
+                                    {% else %}
+                                        <i class="fas fa-medal text-warning"></i>
+                                    {% endif %}
+                                </div>
+                                <h6>{{ nfc_card.get_card_type_display }}</h6>
+                                <small class="text-muted">Premium Quality</small>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="feature-icon bg-light rounded-circle mx-auto mb-2" style="width: 60px; height: 60px; line-height: 60px;">
+                                    <i class="fas fa-mobile-alt text-info"></i>
+                                </div>
+                                <h6>NFC Ready</h6>
+                                <small class="text-muted">Tap & Share</small>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="feature-icon bg-light rounded-circle mx-auto mb-2" style="width: 60px; height: 60px; line-height: 60px;">
+                                    <i class="fas fa-chart-line text-success"></i>
+                                </div>
+                                <h6>Analytics</h6>
+                                <small class="text-muted">Track Engagement</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info border-0 mb-4">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Ready to activate!</strong> Your {{ nfc_card.get_card_type_display|lower }} card is ready for registration. 
+                        Once activated, you'll be able to share your contact information instantly with a simple tap.
+                    </div>
+                    
+                    {% if user.is_authenticated %}
+                        <form method="post" class="text-center">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-gradient-primary btn-lg px-5">
+                                <i class="fas fa-wifi me-2"></i>
+                                Activate My Card
+                            </button>
+                        </form>
+                        
+                        <div class="mt-4 text-center">
+                            <small class="text-muted">
+                                Activating as: <strong>{{ user.get_full_name|default:user.username }}</strong> ({{ user.email }})
+                                <br>
+                                <a href="{% url 'main:logout' %}" class="text-decoration-none">Not you? Switch account</a>
+                            </small>
+                        </div>
+                    {% else %}
+                        <div class="text-center">
+                            <p class="mb-4">Please log in to activate your TapOne3 card:</p>
+                            <a href="{% url 'main:login' %}" class="btn btn-gradient-primary btn-lg me-3">
+                                <i class="fas fa-sign-in-alt me-2"></i>
+                                Log In
+                            </a>
+                            <a href="{% url 'main:signup' %}" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-user-plus me-2"></i>
+                                Sign Up
+                            </a>
+                        </div>
+                    {% endif %}
+                    
+                    <hr class="my-4">
+                    
+                    <div class="row text-center">
+                        <div class="col-12">
+                            <h6 class="text-muted mb-3">What happens after activation?</h6>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <i class="fas fa-user-edit text-primary fa-2x mb-2"></i>
+                            <p class="small mb-0"><strong>1. Customize</strong><br>Set up your profile</p>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <i class="fas fa-qrcode text-success fa-2x mb-2"></i>
+                            <p class="small mb-0"><strong>2. Generate</strong><br>Get your unique URL</p>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <i class="fas fa-share-alt text-info fa-2x mb-2"></i>
+                            <p class="small mb-0"><strong>3. Share</strong><br>Tap to exchange contacts</p>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <i class="fas fa-analytics text-warning fa-2x mb-2"></i>
+                            <p class="small mb-0"><strong>4. Track</strong><br>Monitor engagement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="{% url 'main:home' %}" class="text-decoration-none">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.nfc-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+{% endblock %}

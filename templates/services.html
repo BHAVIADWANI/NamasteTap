@@ -1,93 +1,262 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Services - NamasteTap{% endblock %}
+{% block title %}Services & Pricing - TapOne3{% endblock %}
 
 {% block content %}
 <!-- Services Hero Section -->
-<section class="page-hero services-hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1>Our Services</h1>
-            <p>Comprehensive web development solutions powered by Django</p>
-            <div class="breadcrumb">
-                <a href="{% url 'main:home' %}">Home</a>
-                <span>/</span>
-                <span>Services</span>
-            </div>
-        </div>
+<section class="hero" style="padding: 4rem 0;">
+    <div class="hero-content">
+        <h1>TapOne3 Services & Pricing</h1>
+        <p>Smart NFC Solutions for Every Professional Need</p>
+        <p>Choose from our premium card materials and comprehensive digital platform</p>
     </div>
 </section>
 
-<!-- Main Services Section -->
-<section class="main-services">
-    <div class="container">
-        <div class="section-header">
-            <h2>What We Offer</h2>
-            <p>Full-stack solutions for your web development needs</p>
+<!-- Service Tiers Section -->
+<section class="features">
+    <div class="features-container">
+        <div class="card-header" style="text-align: center; border: none; padding-bottom: 2rem;">
+            <h2 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                Service Plans
+            </h2>
+            <p style="font-size: 1.2rem; color: var(--text-light);">
+                From individual professionals to enterprise teams
+            </p>
         </div>
-        <div class="services-grid">
-            <div class="service-item">
-                <div class="service-header">
-                    <div class="service-icon">
-                        <i class="fas fa-globe-americas"></i>
-                    </div>
-                    <h3>Web Application Development</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0;">
+            <!-- Basic Plan -->
+            <div class="card" style="border: 2px solid var(--secondary-color); position: relative;">
+                <div style="background: var(--secondary-color); color: white; padding: 1rem; text-align: center; margin: -2rem -2rem 2rem -2rem;">
+                    <h3 style="margin: 0; font-size: 1.5rem;">STARTER</h3>
+                    <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Perfect for Individual Professionals</p>
                 </div>
-                <div class="service-content">
-                    <p>Custom web applications built with Django framework, designed for scalability and performance.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Custom Django Applications</li>
-                        <li><i class="fas fa-check"></i> Responsive Frontend Design</li>
-                        <li><i class="fas fa-check"></i> Database Integration</li>
-                        <li><i class="fas fa-check"></i> User Authentication</li>
+                
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">₹299</div>
+                    <div style="color: var(--text-light);">One-time setup + Card cost</div>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle" style="color: var(--secondary-color);"></i> What's Included:
+                    </h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-user" style="color: var(--secondary-color); width: 20px;"></i> 1 Digital Profile
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-chart-line" style="color: var(--secondary-color); width: 20px;"></i> Basic Analytics
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-palette" style="color: var(--secondary-color); width: 20px;"></i> 5 Design Templates
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-share-alt" style="color: var(--secondary-color); width: 20px;"></i> Social Media Links
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-headset" style="color: var(--secondary-color); width: 20px;"></i> Email Support
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <i class="fas fa-wifi" style="color: var(--secondary-color); width: 20px;"></i> NFC Card (Material Extra)
+                        </li>
                     </ul>
-                    <div class="service-price">
-                        <span class="price">Starting at $999</span>
-                    </div>
                 </div>
+                
+                <a href="{% url 'main:signup' %}" class="btn btn-secondary" style="width: 100%; text-align: center;">
+                    Get Started
+                </a>
             </div>
 
-            <div class="service-item featured">
-                <div class="featured-badge">Most Popular</div>
-                <div class="service-header">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
+            <!-- Pro Plan -->
+            <div class="card" style="border: 2px solid var(--primary-color); position: relative; transform: scale(1.05);">
+                <div style="background: var(--primary-color); color: white; padding: 1rem; text-align: center; margin: -2rem -2rem 2rem -2rem; position: relative;">
+                    <div style="position: absolute; top: -10px; right: 20px; background: var(--secondary-color); color: white; padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.875rem;">
+                        POPULAR
                     </div>
-                    <h3>Full-Stack Development</h3>
+                    <h3 style="margin: 0; font-size: 1.5rem;">PROFESSIONAL</h3>
+                    <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Ideal for Business Professionals</p>
                 </div>
-                <div class="service-content">
-                    <p>Complete end-to-end web development including frontend, backend, and database design.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Frontend & Backend Development</li>
-                        <li><i class="fas fa-check"></i> API Development & Integration</li>
-                        <li><i class="fas fa-check"></i> Database Design & Optimization</li>
-                        <li><i class="fas fa-check"></i> Deployment & Hosting Setup</li>
-                        <li><i class="fas fa-check"></i> Maintenance & Support</li>
+                
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">₹699</div>
+                    <div style="color: var(--text-light);">One-time setup + Card cost</div>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">
+                        <i class="fas fa-star" style="color: var(--secondary-color);"></i> Everything in Starter, plus:
+                    </h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-users" style="color: var(--primary-color); width: 20px;"></i> 3 Profile Types (Pro/Personal/Creative)
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-chart-pie" style="color: var(--primary-color); width: 20px;"></i> Advanced Analytics & Insights
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-paint-brush" style="color: var(--primary-color); width: 20px;"></i> Custom Design Service
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-link" style="color: var(--primary-color); width: 20px;"></i> CRM Integration
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-phone" style="color: var(--primary-color); width: 20px;"></i> Priority Phone Support
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <i class="fas fa-calendar" style="color: var(--primary-color); width: 20px;"></i> Calendar Integration
+                        </li>
                     </ul>
-                    <div class="service-price">
-                        <span class="price">Starting at $1,999</span>
-                    </div>
                 </div>
+                
+                <a href="{% url 'main:signup' %}" class="btn btn-primary" style="width: 100%; text-align: center;">
+                    Choose Professional
+                </a>
             </div>
 
-            <div class="service-item">
-                <div class="service-header">
-                    <div class="service-icon">
-                        <i class="fas fa-plug"></i>
-                    </div>
-                    <h3>API Development</h3>
+            <!-- Enterprise Plan -->
+            <div class="card" style="border: 2px solid var(--accent-color); position: relative;">
+                <div style="background: var(--accent-color); color: white; padding: 1rem; text-align: center; margin: -2rem -2rem 2rem -2rem;">
+                    <h3 style="margin: 0; font-size: 1.5rem;">ENTERPRISE</h3>
+                    <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">For Teams & Organizations</p>
                 </div>
-                <div class="service-content">
-                    <p>RESTful API development using Django REST Framework for seamless data integration.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> REST API Development</li>
-                        <li><i class="fas fa-check"></i> API Documentation</li>
-                        <li><i class="fas fa-check"></i> Authentication & Security</li>
-                        <li><i class="fas fa-check"></i> Third-party Integrations</li>
+                
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">Custom</div>
+                    <div style="color: var(--text-light);">Contact for pricing</div>
+                </div>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">
+                        <i class="fas fa-crown" style="color: var(--accent-color);"></i> Everything in Professional, plus:
+                    </h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-users-cog" style="color: var(--accent-color); width: 20px;"></i> Team Management Dashboard
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-shopping-cart" style="color: var(--accent-color); width: 20px;"></i> Bulk Ordering (10+ cards)
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-building" style="color: var(--accent-color); width: 20px;"></i> Company Branding
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-api" style="color: var(--accent-color); width: 20px;"></i> API Access
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border-color);">
+                            <i class="fas fa-user-tie" style="color: var(--accent-color); width: 20px;"></i> Dedicated Account Manager
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <i class="fas fa-cogs" style="color: var(--accent-color); width: 20px;"></i> Custom Integrations
+                        </li>
                     </ul>
-                    <div class="service-price">
-                        <span class="price">Starting at $799</span>
+                </div>
+                
+                <a href="{% url 'main:contact' %}" class="btn" style="width: 100%; text-align: center; background: var(--accent-color); color: white;">
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NFC Card Options Section -->
+<section class="features" style="background: var(--background-light);">
+    <div class="features-container">
+        <div class="card-header" style="text-align: center; border: none; padding-bottom: 2rem;">
+            <h2 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                Premium NFC Cards & Standees
+            </h2>
+            <p style="font-size: 1.2rem; color: var(--text-light);">
+                Choose from three premium materials for your smart business cards
+            </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0;">
+            <!-- PVC Cards -->
+            <div class="feature-card" style="background: white; border: 2px solid var(--secondary-color);">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="background: var(--secondary-color); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2rem;">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                </div>
+                <h3 class="feature-title" style="color: var(--secondary-color);">PVC Cards</h3>
+                <div style="text-align: center; margin: 1rem 0;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">₹150</div>
+                    <div style="color: var(--text-light); font-size: 0.9rem;">per card</div>
+                </div>
+                <p class="feature-description">
+                    <strong>Perfect for everyday use</strong><br>
+                    • Durable PVC material<br>
+                    • Water resistant<br>
+                    • Full-color printing<br>
+                    • Standard thickness<br>
+                    • Most popular choice
+                </p>
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 500;">PVC Standee:</span>
+                        <span style="color: var(--primary-color); font-weight: bold;">₹600</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wood Cards -->
+            <div class="feature-card" style="background: white; border: 2px solid #8B4513;">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="background: #8B4513; color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2rem;">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                </div>
+                <h3 class="feature-title" style="color: #8B4513;">Wood Cards</h3>
+                <div style="text-align: center; margin: 1rem 0;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">₹120</div>
+                    <div style="color: var(--text-light); font-size: 0.9rem;">per card</div>
+                </div>
+                <p class="feature-description">
+                    <strong>Eco-friendly & unique</strong><br>
+                    • Sustainable bamboo wood<br>
+                    • Natural grain patterns<br>
+                    • Laser engraving<br>
+                    • Lightweight yet strong<br>
+                    • Environmentally conscious
+                </p>
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 500;">Wood Standee:</span>
+                        <span style="color: var(--primary-color); font-weight: bold;">₹480</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metal Cards -->
+            <div class="feature-card" style="background: white; border: 2px solid #C0C0C0; position: relative;">
+                <div style="position: absolute; top: -10px; right: 10px; background: var(--primary-color); color: white; padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.75rem;">
+                    PREMIUM
+                </div>
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="background: linear-gradient(45deg, #C0C0C0, #E8E8E8); color: #333; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2rem;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                </div>
+                <h3 class="feature-title" style="color: #666;">Metal Cards</h3>
+                <div style="text-align: center; margin: 1rem 0;">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">₹300</div>
+                    <div style="color: var(--text-light); font-size: 0.9rem;">per card</div>
+                </div>
+                <p class="feature-description">
+                    <strong>Ultimate luxury experience</strong><br>
+                    • Premium stainless steel<br>
+                    • Magnetic attraction<br>
+                    • Etched or printed design<br>
+                    • Impressive weight & feel<br>
+                    • Executive-level impact
+                </p>
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 500;">Metal Standee:</span>
+                        <span style="color: var(--primary-color); font-weight: bold;">₹1,200</span>
                     </div>
                 </div>
             </div>
@@ -95,182 +264,150 @@
     </div>
 </section>
 
-<!-- Process Section -->
-<section class="process-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Our Development Process</h2>
-            <p>How we bring your ideas to life</p>
+<!-- Digital Features Section -->
+<section class="features">
+    <div class="features-container">
+        <div class="card-header" style="text-align: center; border: none; padding-bottom: 2rem;">
+            <h2 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                Smart Digital Features
+            </h2>
+            <p style="font-size: 1.2rem; color: var(--text-light);">
+                Powerful digital platform included with every TapOne3 card
+            </p>
         </div>
-        <div class="process-timeline">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Discovery & Planning</h3>
-                    <p>We start by understanding your requirements, goals, and target audience to create a comprehensive project plan.</p>
+        
+        <div class="features-grid" style="margin-top: 3rem;">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-circle"></i>
                 </div>
+                <h3 class="feature-title">Three Profile Types</h3>
+                <p class="feature-description">
+                    <strong>Professional:</strong> Business contact, company info, LinkedIn<br>
+                    <strong>Personal:</strong> Personal social media, hobbies, interests<br>
+                    <strong>Creative:</strong> Portfolio, artwork, creative projects
+                </p>
             </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Design & Architecture</h3>
-                    <p>Creating wireframes, mockups, and system architecture to ensure optimal user experience and performance.</p>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-analytics"></i>
                 </div>
+                <h3 class="feature-title">Real-Time Analytics</h3>
+                <p class="feature-description">
+                    Track card taps, profile views, contact saves, and geographic data. 
+                    Understand your networking ROI with detailed insights and reports.
+                </p>
             </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Development</h3>
-                    <p>Building your application using Django best practices, clean code, and modern development methodologies.</p>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-puzzle-piece"></i>
                 </div>
+                <h3 class="feature-title">Smart Integrations</h3>
+                <p class="feature-description">
+                    Connect with popular CRMs (Salesforce, HubSpot), calendar apps, 
+                    email marketing tools, and social media platforms.
+                </p>
             </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h3>Testing & Quality Assurance</h3>
-                    <p>Comprehensive testing to ensure your application is bug-free, secure, and performs optimally.</p>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
                 </div>
+                <h3 class="feature-title">Universal Compatibility</h3>
+                <p class="feature-description">
+                    Works with any NFC-enabled smartphone (iPhone & Android). 
+                    No app downloads required - just tap and connect instantly.
+                </p>
             </div>
-            <div class="process-step">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <h3>Deployment & Launch</h3>
-                    <p>Deploying your application to production servers and ensuring everything runs smoothly.</p>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-check"></i>
                 </div>
+                <h3 class="feature-title">Privacy Controls</h3>
+                <p class="feature-description">
+                    Complete control over what information you share and with whom. 
+                    GDPR compliant with advanced privacy settings.
+                </p>
             </div>
-            <div class="process-step">
-                <div class="step-number">6</div>
-                <div class="step-content">
-                    <h3>Maintenance & Support</h3>
-                    <p>Ongoing support, updates, and maintenance to keep your application running at peak performance.</p>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Technologies Section -->
-<section class="technologies-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Technologies We Use</h2>
-            <p>Modern tools and frameworks for cutting-edge solutions</p>
-        </div>
-        <div class="tech-categories">
-            <div class="tech-category">
-                <h3>Backend</h3>
-                <div class="tech-items">
-                    <div class="tech-badge">
-                        <i class="fab fa-python"></i>
-                        <span>Python</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fab fa-django"></i>
-                        <span>Django</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fas fa-server"></i>
-                        <span>Django REST</span>
-                    </div>
-                </div>
-            </div>
-            <div class="tech-category">
-                <h3>Frontend</h3>
-                <div class="tech-items">
-                    <div class="tech-badge">
-                        <i class="fab fa-html5"></i>
-                        <span>HTML5</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fab fa-css3-alt"></i>
-                        <span>CSS3</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fab fa-js"></i>
-                        <span>JavaScript</span>
-                    </div>
-                </div>
-            </div>
-            <div class="tech-category">
-                <h3>Database</h3>
-                <div class="tech-items">
-                    <div class="tech-badge">
-                        <i class="fas fa-database"></i>
-                        <span>SQLite</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fas fa-elephant"></i>
-                        <span>PostgreSQL</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fas fa-dolphin"></i>
-                        <span>MySQL</span>
-                    </div>
-                </div>
-            </div>
-            <div class="tech-category">
-                <h3>Tools</h3>
-                <div class="tech-items">
-                    <div class="tech-badge">
-                        <i class="fab fa-git-alt"></i>
-                        <span>Git</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </div>
-                    <div class="tech-badge">
-                        <i class="fas fa-code"></i>
-                        <span>VS Code</span>
-                    </div>
-                </div>
+                <h3 class="feature-title">Real-Time Updates</h3>
+                <p class="feature-description">
+                    Change your information anytime and it updates automatically. 
+                    No need to reprint cards when your details change.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ Section -->
-<section class="faq-section">
-    <div class="container">
-        <div class="section-header">
-            <h2>Frequently Asked Questions</h2>
-            <p>Common questions about our services</p>
+<!-- Additional Services Section -->
+<section class="features" style="background: var(--background-light);">
+    <div class="features-container">
+        <div class="card-header" style="text-align: center; border: none; padding-bottom: 2rem;">
+            <h2 class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                Additional Services
+            </h2>
+            <p style="font-size: 1.2rem; color: var(--text-light);">
+                Complete support to maximize your networking success
+            </p>
         </div>
-        <div class="faq-content">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How long does it take to develop a Django application?</h3>
-                    <i class="fas fa-chevron-down"></i>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 3rem 0;">
+            <div class="card">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <i class="fas fa-paint-brush" style="font-size: 3rem; color: var(--secondary-color);"></i>
                 </div>
-                <div class="faq-answer">
-                    <p>The development time depends on the complexity and scope of your project. A simple web application can take 2-4 weeks, while more complex applications may take 2-6 months. We provide detailed timelines during the planning phase.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Do you provide ongoing maintenance and support?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Yes, we offer comprehensive maintenance and support packages including bug fixes, security updates, performance optimization, and feature enhancements to keep your application running smoothly.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Can you integrate with existing systems?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Absolutely! Django's flexibility allows us to integrate with various existing systems, databases, and third-party APIs. We can create custom solutions that work seamlessly with your current infrastructure.</p>
+                <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 1rem;">Design Consultation</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Custom design creation</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Brand alignment guidance</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Multiple design revisions</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Professional design tips</li>
+                </ul>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">₹999</span>
+                    <span style="color: var(--text-light);"> / consultation</span>
                 </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What makes Django a good choice for web development?</h3>
-                    <i class="fas fa-chevron-down"></i>
+
+            <div class="card">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <i class="fas fa-boxes" style="font-size: 3rem; color: var(--primary-color);"></i>
                 </div>
-                <div class="faq-answer">
-                    <p>Django offers rapid development, built-in security features, scalability, a robust admin interface, and a large ecosystem of packages. It's perfect for building secure, maintainable web applications quickly.</p>
+                <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 1rem;">Bulk Orders</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> 10+ cards: 10% discount</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> 25+ cards: 15% discount</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> 50+ cards: 20% discount</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Custom packaging available</li>
+                </ul>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <span style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color);">Volume Discounts</span><br>
+                    <span style="color: var(--text-light);">Contact for pricing</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <i class="fas fa-hands-helping" style="font-size: 3rem; color: var(--accent-color);"></i>
+                </div>
+                <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 1rem;">Setup Assistance</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Profile setup guidance</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Integration configuration</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Training session (1 hour)</li>
+                    <li style="padding: 0.5rem 0;"><i class="fas fa-check" style="color: var(--secondary-color);"></i> Best practices guide</li>
+                </ul>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">₹499</span>
+                    <span style="color: var(--text-light);"> / session</span>
                 </div>
             </div>
         </div>
@@ -278,15 +415,19 @@
 </section>
 
 <!-- CTA Section -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-content">
-            <h2>Ready to Start Your Project?</h2>
-            <p>Let's discuss how we can bring your web application ideas to life with Django.</p>
-            <div class="cta-buttons">
-                <a href="{% url 'main:contact' %}" class="btn btn-primary">Get Started</a>
-                <a href="/admin/" class="btn btn-secondary">View Admin Demo</a>
-            </div>
+<section class="hero" style="padding: 4rem 0;">
+    <div class="hero-content">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Upgrade Your Networking?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+            Choose your plan and material, then start connecting smarter today
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="{% url 'main:signup' %}" class="cta-button">
+                <i class="fas fa-rocket"></i> Start Your Journey
+            </a>
+            <a href="{% url 'main:contact' %}" class="btn btn-secondary">
+                <i class="fas fa-phone"></i> Speak to Sales
+            </a>
         </div>
     </div>
 </section>

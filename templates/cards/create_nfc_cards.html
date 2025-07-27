@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Create NFC Cards - Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h4 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Create New NFC Cards
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Card Type</label>
+                                <select name="card_type" class="form-select" required>
+                                    <option value="">Select card type...</option>
+                                    {% for type_key, type_name in card_type_choices %}
+                                        <option value="{{ type_key }}">{{ type_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" name="quantity" class="form-control" 
+                                       min="1" max="100" value="1" required>
+                                <div class="form-text">Maximum 100 cards per batch</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Batch Number (Optional)</label>
+                            <input type="text" name="batch_number" class="form-control" 
+                                   placeholder="e.g., BATCH-2025-001">
+                            <div class="form-text">Leave empty for auto-generated batch number</div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Note:</strong> Each card will be assigned a unique 16-character registration code 
+                            that customers can use to activate their digital business cards.
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'main:manage_nfc_cards' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Cards
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-magic me-2"></i>Create Cards
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Card Type Information -->
+            <div class="row mt-4">
+                <div class="col-md-4 mb-3">
+                    <div class="info-card pvc">
+                        <div class="info-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h6>PVC Cards</h6>
+                        <p class="small text-muted">Durable plastic cards, waterproof and versatile. Price: ₹150 each</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="info-card wood">
+                        <div class="info-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h6>Wood Cards</h6>
+                        <p class="small text-muted">Eco-friendly wooden cards with laser engraving. Price: ₹120 each</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="info-card metal">
+                        <div class="info-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h6>Metal Cards</h6>
+                        <p class="small text-muted">Premium metal cards for executives. Price: ₹300 each</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.info-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card.pvc {
+    border-color: #007bff;
+    background: rgba(0, 123, 255, 0.05);
+}
+
+.info-card.wood {
+    border-color: #28a745;
+    background: rgba(40, 167, 69, 0.05);
+}
+
+.info-card.metal {
+    border-color: #ffc107;
+    background: rgba(255, 193, 7, 0.05);
+}
+
+.info-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.info-card.pvc .info-icon {
+    color: #007bff;
+}
+
+.info-card.wood .info-icon {
+    color: #28a745;
+}
+
+.info-card.metal .info-icon {
+    color: #ffc107;
+}
+</style>
+{% endblock %}

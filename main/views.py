@@ -1,11 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
-from .models import CustomUser, UserProfile
+from django.utils import timezone
+from django.urls import reverse
+from django.conf import settings
+import json
+from .models import CustomUser, UserProfile, NFCCard, DigitalCard, CardAnalytics, CardOrder
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, UserProfileForm, UserUpdateForm
+
+# Import NFC card views
+from .nfc_views import *
 
 def home(request):
     return render(request, 'home.html')
@@ -21,7 +28,7 @@ def contact(request):
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('main:dashboard')
     
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
@@ -29,7 +36,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, f'Welcome back, {user.first_name}!')
-            return redirect('dashboard')
+            return redirect('main:dashboard')
         else:
             messages.error(request, 'Invalid username/email or password.')
     else:
@@ -39,7 +46,7 @@ def login_view(request):
 
 def signup_view(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('main:dashboard')
     
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -47,7 +54,7 @@ def signup_view(request):
             user = form.save()
             login(request, user)
             messages.success(request, f'Account created successfully! Welcome, {user.first_name}!')
-            return redirect('dashboard')
+            return redirect('main:dashboard')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -58,7 +65,7 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'You have been logged out successfully.')
-    return redirect('home')
+    return redirect('main:home')
 
 @login_required
 def dashboard(request):
@@ -107,7 +114,7 @@ def profile(request):
 def manage_users(request):
     if not request.user.is_admin_user:
         messages.error(request, 'Access denied. Admin privileges required.')
-        return redirect('dashboard')
+        return redirect('main:dashboard')
     
     users = CustomUser.objects.all().order_by('-created_at')
     paginator = Paginator(users, 10)  # Show 10 users per page
@@ -123,14 +130,14 @@ def manage_users(request):
 def user_detail(request, user_id):
     if not request.user.is_admin_user:
         messages.error(request, 'Access denied. Admin privileges required.')
-        return redirect('dashboard')
+        return redirect('main:dashboard')
     
     try:
         user = CustomUser.objects.get(id=user_id)
         profile = user.profile
     except CustomUser.DoesNotExist:
         messages.error(request, 'User not found.')
-        return redirect('manage_users')
+        return redirect('main:manage_users')
     except UserProfile.DoesNotExist:
         profile = UserProfile.objects.create(user=user)
     

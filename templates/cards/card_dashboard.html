@@ -1,0 +1,401 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Digital Cards - TapOne3{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-1">My Digital Cards</h2>
+                    <p class="text-muted mb-0">Manage your TapOne3 digital business cards</p>
+                </div>
+                <div>
+                    <a href="{% url 'main:services' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>Order New Card
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="row mb-5">
+                <div class="col-md-4 mb-3">
+                    <div class="stat-card bg-primary text-white">
+                        <div class="stat-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ total_cards }}</h3>
+                            <p>Active Cards</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="stat-card bg-success text-white">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ total_views }}</h3>
+                            <p>Total Views</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="stat-card bg-info text-white">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>{{ total_views|floatformat:0 }}</h3>
+                            <p>Avg. Views/Card</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cards Grid -->
+            {% if cards %}
+                <div class="row">
+                    {% for card in cards %}
+                        <div class="col-lg-6 col-xl-4 mb-4">
+                            <div class="card-item h-100">
+                                <div class="card-preview">
+                                    {% if card.profile_image %}
+                                        <img src="{{ card.profile_image.url }}" alt="{{ card.display_name }}" class="card-avatar">
+                                    {% else %}
+                                        <div class="card-avatar-placeholder">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    <div class="card-info">
+                                        <h5 class="card-name">{{ card.display_name }}</h5>
+                                        {% if card.job_title %}
+                                            <p class="card-job">{{ card.job_title }}</p>
+                                        {% endif %}
+                                        {% if card.company_name %}
+                                            <p class="card-company">{{ card.company_name }}</p>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="card-status">
+                                        {% if card.is_active %}
+                                            <span class="status-badge active">
+                                                <i class="fas fa-check-circle"></i> Active
+                                            </span>
+                                        {% else %}
+                                            <span class="status-badge inactive">
+                                                <i class="fas fa-pause-circle"></i> Inactive
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                                <div class="card-stats">
+                                    <div class="stat">
+                                        <i class="fas fa-eye text-primary"></i>
+                                        <span>{{ card.view_count }} views</span>
+                                    </div>
+                                    <div class="stat">
+                                        <i class="fas fa-calendar text-muted"></i>
+                                        <span>{{ card.created_at|date:"M d, Y" }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-actions">
+                                    <a href="{% url 'main:view_card' card.url_slug %}" 
+                                       class="btn btn-sm btn-outline-primary" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i> View
+                                    </a>
+                                    <a href="{% url 'main:edit_card' card.url_slug %}" 
+                                       class="btn btn-sm btn-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="{% url 'main:card_analytics' card.url_slug %}" 
+                                       class="btn btn-sm btn-success">
+                                        <i class="fas fa-chart-bar"></i> Analytics
+                                    </a>
+                                    
+                                    <div class="dropdown d-inline">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
+                                                type="button" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button class="dropdown-item" onclick="copyUrl('{{ card.url_slug }}')">
+                                                    <i class="fas fa-copy me-2"></i>Copy URL
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button class="dropdown-item" onclick="shareCard('{{ card.url_slug }}', '{{ card.display_name }}')">
+                                                    <i class="fas fa-share-alt me-2"></i>Share
+                                                </button>
+                                            </li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li>
+                                                <form method="post" action="{% url 'main:toggle_card_status' card.url_slug %}" class="d-inline">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="dropdown-item">
+                                                        {% if card.is_active %}
+                                                            <i class="fas fa-pause me-2"></i>Deactivate
+                                                        {% else %}
+                                                            <i class="fas fa-play me-2"></i>Activate
+                                                        {% endif %}
+                                                    </button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state text-center py-5">
+                    <div class="empty-icon mb-4">
+                        <i class="fas fa-credit-card fa-4x text-muted"></i>
+                    </div>
+                    <h4 class="mb-3">No Digital Cards Yet</h4>
+                    <p class="text-muted mb-4">
+                        You haven't registered any TapOne3 cards yet. Order your first card to get started!
+                    </p>
+                    <a href="{% url 'main:services' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-shopping-cart me-2"></i>Order Your First Card
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.stat-card {
+    padding: 1.5rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    opacity: 0.8;
+}
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.stat-info p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.card-item {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-preview {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.card-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 1rem;
+}
+
+.card-avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.card-job {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0.25rem;
+}
+
+.card-company {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+.card-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-badge.active {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+.status-badge.inactive {
+    background: rgba(108, 117, 125, 0.2);
+    color: #6c757d;
+    border: 1px solid rgba(108, 117, 125, 0.3);
+}
+
+.card-stats {
+    padding: 1rem 1.5rem;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.stat i {
+    margin-right: 0.5rem;
+}
+
+.card-actions {
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.card-actions .btn {
+    flex: 1;
+    min-width: 80px;
+}
+
+.empty-state {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    opacity: 0.3;
+}
+</style>
+
+<script>
+function copyUrl(slug) {
+    const url = `${window.location.origin}/card/${slug}/`;
+    navigator.clipboard.writeText(url).then(() => {
+        // Show toast or alert
+        showToast('Card URL copied to clipboard!');
+    });
+}
+
+function shareCard(slug, name) {
+    const url = `${window.location.origin}/card/${slug}/`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: `${name} - Digital Business Card`,
+            text: `Check out my digital business card on TapOne3`,
+            url: url
+        });
+    } else {
+        copyUrl(slug);
+    }
+}
+
+function showToast(message) {
+    // Simple toast notification
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #28a745;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        z-index: 9999;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+    }
+    
+    @keyframes slideOut {
+        from { transform: translateX(0); }
+        to { transform: translateX(100%); }
+    }
+`;
+document.head.appendChild(style);
+</script>
+{% endblock %}

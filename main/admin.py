@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, UserProfile, NFCCard, DigitalCard, CardAnalytics, CardOrder
+from .models import CustomUser, UserProfile, VisitingCard, DigitalCard, CardAnalytics, CardOrder
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
@@ -26,8 +26,8 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
-@admin.register(NFCCard)
-class NFCCardAdmin(admin.ModelAdmin):
+@admin.register(VisitingCard)
+class VisitingCardAdmin(admin.ModelAdmin):
     list_display = ('registration_code', 'card_type', 'status', 'batch_number', 'manufactured_date', 'customer_email')
     list_filter = ('card_type', 'status', 'manufactured_date')
     search_fields = ('registration_code', 'customer_email', 'batch_number')
@@ -48,13 +48,13 @@ class NFCCardAdmin(admin.ModelAdmin):
 @admin.register(DigitalCard)
 class DigitalCardAdmin(admin.ModelAdmin):
     list_display = ('display_name', 'user', 'url_slug', 'is_active', 'view_count', 'created_at')
-    list_filter = ('is_active', 'created_at', 'nfc_card__card_type')
+    list_filter = ('is_active', 'created_at', 'visiting_card__card_type')
     search_fields = ('display_name', 'user__username', 'user__email', 'url_slug')
     readonly_fields = ('url_slug', 'view_count', 'created_at', 'updated_at', 'last_viewed')
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('user', 'nfc_card', 'url_slug', 'card_title', 'is_active')
+            'fields': ('user', 'visiting_card', 'url_slug', 'card_title', 'is_active')
         }),
         ('Contact Information', {
             'fields': ('display_name', 'job_title', 'company_name', 'email', 'phone', 'bio', 'website', 'location')

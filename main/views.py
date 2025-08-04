@@ -8,11 +8,11 @@ from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
 import json
-from .models import CustomUser, UserProfile, NFCCard, DigitalCard, CardAnalytics, CardOrder
+from .models import CustomUser, UserProfile, VisitingCard, DigitalCard, CardAnalytics, CardOrder
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, UserProfileForm, UserUpdateForm
 
-# Import NFC card views
-from .nfc_views import *
+# Import visiting card views
+from .visiting_card_views import *
 
 def home(request):
     return render(request, 'home.html')

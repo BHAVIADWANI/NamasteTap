@@ -1,4 +1,4 @@
-# Image Requirements & Changes - TapOne3 Futuristic UI
+# Image Requirements & Changes - ONE3TAP Futuristic UI
 
 ## 🎨 **Complete Image Asset List**
 

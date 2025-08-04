@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}TapOne3 - Smart NFC Business Cards{% endblock %}</title>
+    <title>{% block title %}ONE3TAP - Smart Digital Visiting Cards{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     {% block extra_css %}{% endblock %}
 </head>
@@ -15,8 +16,8 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a href="{% url 'main:home' %}" class="navbar-brand">
-                <i class="fas fa-wifi me-2 animate-pulse"></i>
-                <span class="text-gradient">TapOne3</span>
+                <i class="fas fa-wifi me-2"></i>
+                <span class="text-gradient">ONE3TAP</span>
             </a>
             
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -68,10 +69,10 @@
                                 <li><a class="dropdown-item" href="{% url 'main:manage_users' %}">
                                     <i class="fas fa-users me-2"></i>Manage Users
                                 </a></li>
-                                <li><a class="dropdown-item" href="{% url 'main:manage_nfc_cards' %}">
-                                    <i class="fas fa-credit-card me-2"></i>Manage NFC Cards
+                                <li><a class="dropdown-item" href="{% url 'main:manage_visiting_cards' %}">
+                                    <i class="fas fa-credit-card me-2"></i>Manage Visiting Cards
                                 </a></li>
-                                <li><a class="dropdown-item" href="{% url 'main:create_nfc_cards' %}">
+                                <li><a class="dropdown-item" href="{% url 'main:create_visiting_cards' %}">
                                     <i class="fas fa-plus me-2"></i>Create Cards
                                 </a></li>
                             </ul>
@@ -117,21 +118,27 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-5" style="background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%); border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container">
-            <div class="row">
+    <footer class="py-5" style="background: var(--matrix-gradient); border-top: 2px solid transparent; border-image: var(--neon-gradient) 1; position: relative; overflow: hidden;">
+        <!-- Futuristic Footer Background -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
+        
+        <div class="container position-relative">
+            <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="mb-3">
-                        <i class="fas fa-wifi me-2 text-gradient"></i>
-                        <span class="text-gradient fs-4 fw-bold">TapOne3</span>
+                    <div class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-wifi me-3 text-neon" style="font-size: 2rem; animation: quantumSpin 3s linear infinite;"></i>
+                        <span class="text-gradient fs-2 fw-bold" style="font-family: 'Orbitron', monospace;">ONE3TAP</span>
                     </div>
-                    <p class="text-muted">
-                        One Tap, Three Connections - The Future of Business Networking
+                    <p class="text-muted mb-0" style="font-size: 1.1rem;">
+                        <span class="text-electric">One Tap</span>, <span class="text-neon">Three Connections</span> - The Future of Business Networking
                     </p>
                 </div>
                 <div class="col-lg-6 text-lg-end">
                     <div class="text-muted">
-                        © 2025 TapOne3. All rights reserved.
+                        © 2025 <span class="text-gradient">ONE3TAP</span>. All rights reserved.
+                    </div>
+                    <div class="mt-2">
+                        <small class="text-electric">Powered by Quantum Technology</small>
                     </div>
                 </div>
             </div>

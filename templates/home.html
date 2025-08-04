@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}TapOne3 - Smart NFC Business Cards{% endblock %}
+{% block title %}ONE3TAP - Smart Digital Visiting Cards{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
         <div class="row align-items-center min-vh-100">
-            <div class="col-lg-6 hero-content animate-fade-up">
+            <div class="col-lg-6 hero-content">
                 <h1 class="display-4 fw-bold mb-4">
-                    Transform Your Networking with Smart NFC Business Cards
+                    Smart Digital <span class="text-gradient">Visiting Cards</span>
                 </h1>
-                <p class="lead mb-4">
-                    Create stunning digital business cards that work with any smartphone. No app required.
+                <p class="lead mb-4 text-secondary">
+                    Transform your networking with intelligent digital business cards. Share your contact details instantly with a simple tap.
                 </p>
                 <div class="d-flex flex-wrap gap-3 mb-4">
                     <a href="{% url 'main:signup' %}" class="btn btn-primary btn-lg">
-                        <i class="fas fa-rocket me-2"></i>Get Your Smart Card Today
+                        <i class="fas fa-rocket me-2"></i>Get Started
                     </a>
                     <a href="#how-it-works" class="btn btn-outline btn-lg">
-                        <i class="fas fa-play me-2"></i>See How It Works
+                        <i class="fas fa-play me-2"></i>Learn More
                     </a>
                 </div>
                 <div class="hero-stats">
@@ -38,53 +38,53 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 text-center animate-slide-left">
-                <div class="hero-image floating">
-                    <img src="{% static 'images/hero/futuristic-nfc.svg' %}" alt="Futuristic NFC Technology" class="img-fluid" style="max-height: 500px;">
+            <div class="col-lg-6 text-center">
+                <div class="hero-image">
+                    <img src="{% static 'images/hero/futuristic-nfc.svg' %}" alt="Digital Visiting Card Technology" class="img-fluid" style="max-height: 500px;">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Value Propositions -->
+<!-- Features Section -->
 <section class="py-5">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="glass-card h-100 p-4">
-                    <div class="text-gradient mb-3">
-                        <i class="fas fa-bolt fa-3x"></i>
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h5 class="card-title text-gradient">Instant Sharing</h5>
-                    <p class="card-text">Tap to share all your contact details instantly with any smartphone</p>
+                    <h5 class="feature-title">Instant Sharing</h5>
+                    <p class="feature-description">Share all your contact details instantly with a simple tap</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="glass-card h-100 p-4">
-                    <div class="text-gradient mb-3">
-                        <i class="fas fa-sync-alt fa-3x"></i>
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
                     </div>
-                    <h5 class="card-title text-gradient">Always Updated</h5>
-                    <p class="card-text">Change your information anytime, everywhere - updates automatically</p>
+                    <h5 class="feature-title">Always Updated</h5>
+                    <p class="feature-description">Update your information anytime - changes reflect everywhere</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="glass-card h-100 p-4">
-                    <div class="text-gradient mb-3">
-                        <i class="fas fa-leaf fa-3x"></i>
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
                     </div>
-                    <h5 class="card-title text-gradient">Eco-Friendly</h5>
-                    <p class="card-text">Reduce paper waste with digital alternatives that help the environment</p>
+                    <h5 class="feature-title">Eco-Friendly</h5>
+                    <p class="feature-description">Reduce paper waste with sustainable digital alternatives</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="glass-card h-100 p-4">
-                    <div class="text-gradient mb-3">
-                        <i class="fas fa-star fa-3x"></i>
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
                     </div>
-                    <h5 class="card-title text-gradient">Professional</h5>
-                    <p class="card-text">Make a lasting impression with interactive, modern business cards</p>
+                    <h5 class="feature-title">Professional</h5>
+                    <p class="feature-description">Make lasting impressions with modern, interactive cards</p>
                 </div>
             </div>
         </div>
@@ -92,55 +92,55 @@
 </section>
 
 <!-- How It Works Section -->
-<section id="how-it-works" class="py-5" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);">
+<section id="how-it-works" class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center mb-5">
                 <h2 class="display-5 fw-bold">How It Works</h2>
-                <p class="lead">Get started with your smart business card in 4 simple steps</p>
+                <p class="lead text-secondary">Get started in 4 simple steps</p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="text-center glass-card p-4 h-100">
-                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
-                        <span class="fs-3 fw-bold">1</span>
+                <div class="text-center feature-card h-100">
+                    <div class="feature-icon mb-3">
+                        <span class="fs-2 fw-bold">1</span>
                     </div>
-                    <h5 class="text-gradient">Order Your Card</h5>
-                    <p class="text-muted">Choose from our range of premium NFC cards</p>
+                    <h5 class="feature-title">Order Your Card</h5>
+                    <p class="feature-description">Choose from our range of premium digital visiting cards</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="text-center glass-card p-4 h-100">
-                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
-                        <span class="fs-3 fw-bold">2</span>
+                <div class="text-center feature-card h-100">
+                    <div class="feature-icon mb-3">
+                        <span class="fs-2 fw-bold">2</span>
                     </div>
-                    <h5 class="text-gradient">Register Online</h5>
-                    <p class="text-muted">Use your unique activation code to set up your profile</p>
+                    <h5 class="feature-title">Register Online</h5>
+                    <p class="feature-description">Use your activation code to set up your profile</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="text-center glass-card p-4 h-100">
-                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
-                        <span class="fs-3 fw-bold">3</span>
+                <div class="text-center feature-card h-100">
+                    <div class="feature-icon mb-3">
+                        <span class="fs-2 fw-bold">3</span>
                     </div>
-                    <h5 class="text-gradient">Customize</h5>
-                    <p class="text-muted">Add your photo, contact details, and company information</p>
+                    <h5 class="feature-title">Customize</h5>
+                    <p class="feature-description">Add your photo, contact details, and company information</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
-                <div class="text-center glass-card p-4 h-100">
-                    <div class="bg-gradient-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 glow-effect" style="width: 80px; height: 80px;">
-                        <span class="fs-3 fw-bold">4</span>
+                <div class="text-center feature-card h-100">
+                    <div class="feature-icon mb-3">
+                        <span class="fs-2 fw-bold">4</span>
                     </div>
-                    <h5 class="text-gradient">Start Networking</h5>
-                    <p class="text-muted">Tap to share with anyone, anywhere</p>
+                    <h5 class="feature-title">Start Networking</h5>
+                    <p class="feature-description">Tap to share with anyone, anywhere instantly</p>
                 </div>
             </div>
         </div>
-        <div class="text-center mt-4">
+        <div class="text-center mt-5">
             <a href="{% url 'main:signup' %}" class="btn btn-primary btn-lg">
-                <i class="fas fa-arrow-right me-2"></i>Get Started Now
+                <i class="fas fa-rocket me-2"></i>Get Started Now
             </a>
         </div>
     </div>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Create NFC Cards - Admin{% endblock %}
+{% block title %}Create Visiting Cards - Admin{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -10,7 +10,7 @@
             <div class="card shadow">
                 <div class="card-header">
                     <h4 class="mb-0">
-                        <i class="fas fa-plus-circle me-2"></i>Create New NFC Cards
+                        <i class="fas fa-plus-circle me-2"></i>Create New Visiting Cards
                     </h4>
                 </div>
                 <div class="card-body">
@@ -50,7 +50,7 @@
                         </div>
                         
                         <div class="d-flex justify-content-between">
-                            <a href="{% url 'main:manage_nfc_cards' %}" class="btn btn-secondary">
+                            <a href="{% url 'main:manage_visiting_cards' %}" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left me-2"></i>Back to Cards
                             </a>
                             <button type="submit" class="btn btn-primary">

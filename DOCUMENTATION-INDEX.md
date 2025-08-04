@@ -1,7 +1,7 @@
-# Documentation Index - TapOne3 NFC Platform
+# Documentation Index - ONE3TAP Platform
 
 ## Project Overview
-This repository contains the TapOne3 NFC business card platform - a comprehensive digital business card solution with NFC technology integration.
+This repository contains the ONE3TAP digital business card platform - a comprehensive digital business card solution with NFC technology integration.
 
 ## Documentation Structure
 
@@ -26,10 +26,10 @@ This repository contains the TapOne3 NFC business card platform - a comprehensiv
 - **Base Template**: `templates/base.html` - Main layout template
 - **Authentication**: `templates/auth/` - Login and signup forms
 - **Dashboard**: `templates/dashboard/` - User and admin dashboards
-- **Cards**: `templates/cards/` - NFC card management interfaces
+- **Cards**: `templates/cards/` - Visiting card management interfaces
 
 #### Configuration
-- **Settings**: `namaste_tap/settings.py` - Django project configuration
+- **Settings**: `one3tap/settings.py` - Django project configuration
 - **Requirements**: `requirements.txt` - Python package dependencies
 - **Environment**: `.env.example` - Environment variable template
 
@@ -42,7 +42,7 @@ This repository contains the TapOne3 NFC business card platform - a comprehensiv
 4. **Analytics** - Track card views and interactions
 5. **Admin Panel** - Comprehensive administration interface
 
-### 💳 NFC Card System
+### 💳 Visiting Card System
 - **Card Registration** - Unique registration codes for physical cards
 - **Digital Profiles** - Complete business information storage
 - **Public Sharing** - SEO-friendly URLs for card sharing
@@ -74,14 +74,14 @@ This repository contains the TapOne3 NFC business card platform - a comprehensiv
 
 ### Core Models
 - **CustomUser** - Extended user model with profile information
-- **NFCCard** - Physical NFC card tracking
+- **VisitingCard** - Physical visiting card tracking
 - **DigitalCard** - Digital business card profiles
 - **CardAnalytics** - View and interaction tracking
 - **CardOrder** - Order management system
 
 ### Relationships
 - User ↔ DigitalCard (One-to-Many)
-- NFCCard ↔ DigitalCard (One-to-One)
+- VisitingCard ↔ DigitalCard (One-to-One)
 - DigitalCard ↔ CardAnalytics (One-to-Many)
 
 ## Deployment Documentation

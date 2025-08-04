@@ -1,7 +1,14 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html                                    {% if visiting_card.card_type == 'pvc' %}
+                                        <i class="fas fa-credit-card text-primary"></i>
+                                    {% elif visiting_card.card_type == 'wood' %}
+                                        <i class="fas fa-tree text-warning"></i>
+                                    {% else %}
+                                        <i class="fas fa-shield-alt text-secondary"></i>
+                                    {% endif %}
+                                </div>
+                                <h6>{{ visiting_card.get_card_type_display }}</h6>oad static %}
 
-{% block title %}Register Your TapOne3 Card{% endblock %}
+{% block title %}Register Your ONE3TAP Visiting Card{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -10,8 +17,8 @@
             <div class="card shadow-lg border-0">
                 <div class="card-header bg-gradient-primary text-white text-center py-4">
                     <i class="fas fa-wifi text-gradient-green fa-3x mb-3 nfc-pulse"></i>
-                    <h2 class="mb-0">Activate Your TapOne3 Card</h2>
-                    <p class="mb-0 opacity-90">Registration Code: <strong>{{ nfc_card.registration_code }}</strong></p>
+                    <h2 class="mb-0">Activate Your ONE3TAP Visiting Card</h2>
+                    <p class="mb-0 opacity-90">Registration Code: <strong>{{ visiting_card.registration_code }}</strong></p>
                 </div>
                 
                 <div class="card-body p-5">
@@ -49,7 +56,7 @@
                     
                     <div class="alert alert-info border-0 mb-4">
                         <i class="fas fa-info-circle me-2"></i>
-                        <strong>Ready to activate!</strong> Your {{ nfc_card.get_card_type_display|lower }} card is ready for registration. 
+                        <strong>Ready to activate!</strong> Your {{ visiting_card.get_card_type_display|lower }} card is ready for registration. 
                         Once activated, you'll be able to share your contact information instantly with a simple tap.
                     </div>
                     
@@ -71,7 +78,7 @@
                         </div>
                     {% else %}
                         <div class="text-center">
-                            <p class="mb-4">Please log in to activate your TapOne3 card:</p>
+                            <p class="mb-4">Please log in to activate your ONE3TAP visiting card:</p>
                             <a href="{% url 'main:login' %}" class="btn btn-gradient-primary btn-lg me-3">
                                 <i class="fas fa-sign-in-alt me-2"></i>
                                 Log In

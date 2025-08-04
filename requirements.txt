@@ -1,4 +1,4 @@
-# TapOne3 - NFC Business Cards Platform Requirements
+# ONE3TAP - Digital Visiting Cards Platform Requirements
 
 # Core Django
 Django>=5.1.0

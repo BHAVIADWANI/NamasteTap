@@ -1,4 +1,4 @@
-# TapOne3 - Production Deployment Guide
+# ONE3TAP - Production Deployment Guide
 
 ## Environment Setup
 
@@ -7,7 +7,7 @@
 DEBUG=False
 SECRET_KEY=your-super-secret-key-here-at-least-50-characters-long
 ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
-DATABASE_URL=postgresql://username:password@localhost:5432/tapone3_db
+DATABASE_URL=postgresql://username:password@localhost:5432/one3tap_db
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_HOST_USER=your-email@gmail.com
@@ -29,7 +29,7 @@ python manage.py collectstatic
 
 4. **Production Server** (using Gunicorn):
 ```bash
-gunicorn namaste_tap.wsgi:application --bind 0.0.0.0:8000
+gunicorn one3tap.wsgi:application --bind 0.0.0.0:8000
 ```
 
 ## Security Checklist

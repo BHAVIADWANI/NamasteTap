@@ -23,7 +23,7 @@ urlpatterns = [
     path('manage-users/', views.manage_users, name='manage_users'),
     path('user/<int:user_id>/', views.user_detail, name='user_detail'),
     
-    # NFC Card Registration System
+    # Visiting Card Registration System
     path('register/<str:code>/', views.register_card, name='register_card'),
     path('card/<slug:slug>/', views.view_card, name='view_card'),
     path('card/<slug:slug>/edit/', views.edit_card, name='edit_card'),
@@ -34,9 +34,9 @@ urlpatterns = [
     # Card Management Dashboard
     path('cards/', views.card_dashboard, name='card_dashboard'),
     
-    # Admin NFC Card Management
-    path('admin/nfc-cards/', views.manage_nfc_cards, name='manage_nfc_cards'),
-    path('admin/nfc-cards/create/', views.create_nfc_cards, name='create_nfc_cards'),
+    # Admin Visiting Card Management
+    path('admin/visiting-cards/', views.manage_visiting_cards, name='manage_visiting_cards'),
+    path('admin/visiting-cards/create/', views.create_visiting_cards, name='create_visiting_cards'),
     
     # API Endpoints
     path('api/card/<slug:slug>/', views.api_card_data, name='api_card_data'),

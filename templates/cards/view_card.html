@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ card.display_name }} - TapOne3 Digital Card{% endblock %}
+{% block title %}{{ card.display_name }} - ONE3TAP Digital Card{% endblock %}
 
 {% block content %}
 <div class="container-fluid py-4">
@@ -117,7 +117,7 @@
                 <div class="card-footer text-center">
                     <div class="powered-by">
                         <small class="text-muted">
-                            Powered by <strong>TapOne3</strong>
+                            Powered by <strong>ONE3TAP</strong>
                             <i class="fas fa-wifi ms-1 text-primary"></i>
                         </small>
                     </div>
@@ -314,7 +314,7 @@ function shareCard() {
     if (navigator.share) {
         navigator.share({
             title: '{{ card.display_name }} - Digital Business Card',
-            text: 'Check out my digital business card on TapOne3',
+            text: 'Check out my digital business card on ONE3TAP',
             url: window.location.href
         });
     } else {

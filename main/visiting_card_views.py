@@ -1,4 +1,4 @@
-# ===== NFC CARD SYSTEM VIEWS =====
+# ===== VISITING CARD SYSTEM VIEWS =====
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -9,14 +9,14 @@ from django.utils import timezone
 from django.urls import reverse
 from django.conf import settings
 import json
-from .models import CustomUser, UserProfile, NFCCard, DigitalCard, CardAnalytics, CardOrder
+from .models import CustomUser, UserProfile, VisitingCard, DigitalCard, CardAnalytics, CardOrder
 
 
 def register_card(request, code):
-    """Register an NFC card with a registration code"""
+    """Register a visiting card with a registration code"""
     try:
-        nfc_card = NFCCard.objects.get(registration_code=code, status__in=['delivered', 'manufactured'])
-    except NFCCard.DoesNotExist:
+        visiting_card = VisitingCard.objects.get(registration_code=code, status__in=['delivered', 'manufactured'])
+    except VisitingCard.DoesNotExist:
         messages.error(request, 'Invalid registration code or card already registered.')
         return render(request, 'cards/register_error.html', {'code': code})
     
@@ -28,20 +28,20 @@ def register_card(request, code):
         # Create digital card
         digital_card = DigitalCard.objects.create(
             user=request.user,
-            nfc_card=nfc_card,
+            visiting_card=visiting_card,
             display_name=request.user.get_full_name() or request.user.username,
             email=request.user.email,
         )
         
-        # Update NFC card status
-        nfc_card.status = 'registered'
-        nfc_card.save()
+        # Update visiting card status
+        visiting_card.status = 'registered'
+        visiting_card.save()
         
         messages.success(request, f'Card registered successfully! Your card URL: {digital_card.get_absolute_url()}')
         return redirect('main:edit_card', slug=digital_card.url_slug)
     
     return render(request, 'cards/register_card.html', {
-        'nfc_card': nfc_card,
+        'visiting_card': visiting_card,
         'registration_url': request.build_absolute_uri()
     })
 
@@ -199,13 +199,13 @@ END:VCARD"""
 
 
 @login_required
-def manage_nfc_cards(request):
-    """Admin view to manage NFC cards"""
+def manage_visiting_cards(request):
+    """Admin view to manage visiting cards"""
     if not request.user.is_admin_user:
         messages.error(request, 'Access denied. Admin privileges required.')
         return redirect('main:dashboard')
     
-    cards = NFCCard.objects.all().order_by('-manufactured_date')
+    cards = VisitingCard.objects.all().order_by('-manufactured_date')
     
     # Filter options
     status_filter = request.GET.get('status')
@@ -223,18 +223,18 @@ def manage_nfc_cards(request):
     context = {
         'page_obj': page_obj,
         'total_cards': cards.count(),
-        'status_choices': NFCCard.STATUS_CHOICES,
-        'card_type_choices': NFCCard.CARD_TYPE_CHOICES,
+        'status_choices': VisitingCard.STATUS_CHOICES,
+        'card_type_choices': VisitingCard.CARD_TYPE_CHOICES,
         'current_status': status_filter,
         'current_type': card_type_filter,
     }
     
-    return render(request, 'cards/manage_nfc_cards.html', context)
+    return render(request, 'cards/manage_visiting_cards.html', context)
 
 
 @login_required
-def create_nfc_cards(request):
-    """Admin view to create new NFC cards"""
+def create_visiting_cards(request):
+    """Admin view to create new visiting cards"""
     if not request.user.is_admin_user:
         messages.error(request, 'Access denied. Admin privileges required.')
         return redirect('main:dashboard')
@@ -246,17 +246,17 @@ def create_nfc_cards(request):
         
         created_cards = []
         for _ in range(quantity):
-            card = NFCCard.objects.create(
+            card = VisitingCard.objects.create(
                 card_type=card_type,
                 batch_number=batch_number,
             )
             created_cards.append(card)
         
         messages.success(request, f'Successfully created {quantity} {card_type} cards.')
-        return redirect('main:manage_nfc_cards')
+        return redirect('main:manage_visiting_cards')
     
-    return render(request, 'cards/create_nfc_cards.html', {
-        'card_type_choices': NFCCard.CARD_TYPE_CHOICES
+    return render(request, 'cards/create_visiting_cards.html', {
+        'card_type_choices': VisitingCard.CARD_TYPE_CHOICES
     })
 
 

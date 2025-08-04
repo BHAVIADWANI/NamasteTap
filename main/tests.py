@@ -1,6 +1,6 @@
 """
-TapOne3 Test Suite
-Tests for NFC Business Cards Platform
+ONE3TAP Test Suite
+Tests for Digital Visiting Cards Platform
 """
 
 from django.test import TestCase, Client
@@ -18,7 +18,7 @@ class CustomUserModelTests(TestCase):
     def setUp(self):
         self.user_data = {
             'username': 'testuser',
-            'email': 'test@tapone3.com',
+            'email': 'test@one3tap.com',
             'first_name': 'Test',
             'last_name': 'User',
             'phone_number': '+1234567890',
@@ -33,7 +33,7 @@ class CustomUserModelTests(TestCase):
             password='testpass123'
         )
         self.assertEqual(user.username, 'testuser')
-        self.assertEqual(user.email, 'test@tapone3.com')
+        self.assertEqual(user.email, 'test@one3tap.com')
         self.assertEqual(user.user_type, 'standard')
         self.assertTrue(user.is_standard_user)
         self.assertFalse(user.is_admin_user)
@@ -43,7 +43,7 @@ class CustomUserModelTests(TestCase):
         """Test creating an admin user"""
         user = CustomUser.objects.create_user(
             username='adminuser',
-            email='admin@tapone3.com',
+            email='admin@one3tap.com',
             password='adminpass123',
             user_type='admin'
         )
@@ -55,7 +55,7 @@ class CustomUserModelTests(TestCase):
         """Test user string representation"""
         user = CustomUser.objects.create_user(
             username='testuser',
-            email='test@tapone3.com',
+            email='test@one3tap.com',
             password='testpass123',
             user_type='admin'
         )
@@ -69,7 +69,7 @@ class UserProfileModelTests(TestCase):
     def setUp(self):
         self.user = CustomUser.objects.create_user(
             username='testuser',
-            email='test@tapone3.com',
+            email='test@one3tap.com',
             password='testpass123'
         )
     
@@ -79,8 +79,8 @@ class UserProfileModelTests(TestCase):
             user=self.user,
             bio='This is a test bio',
             location='Test City',
-            website='https://tapone3.com',
-            company='TapOne3 Corp'
+            website='https://one3tap.com',
+            company='ONE3TAP Corp'
         )
         self.assertEqual(profile.user, self.user)
         self.assertEqual(profile.bio, 'This is a test bio')
@@ -95,7 +95,7 @@ class FormsTests(TestCase):
         """Test user creation form with valid data"""
         form_data = {
             'username': 'newuser',
-            'email': 'newuser@tapone3.com',
+            'email': 'newuser@one3tap.com',
             'first_name': 'New',
             'last_name': 'User',
             'phone_number': '+1234567890',
@@ -110,7 +110,7 @@ class FormsTests(TestCase):
         """Test user creation form with password mismatch"""
         form_data = {
             'username': 'newuser',
-            'email': 'newuser@tapone3.com',
+            'email': 'newuser@one3tap.com',
             'first_name': 'New',
             'last_name': 'User',
             'password1': 'complexpass123',
@@ -123,7 +123,7 @@ class FormsTests(TestCase):
         """Test authentication form"""
         user = CustomUser.objects.create_user(
             username='testuser',
-            email='test@tapone3.com',
+            email='test@one3tap.com',
             password='testpass123'
         )
         
@@ -142,12 +142,12 @@ class ViewsTests(TestCase):
         self.client = Client()
         self.user = CustomUser.objects.create_user(
             username='testuser',
-            email='test@tapone3.com',
+            email='test@one3tap.com',
             password='testpass123'
         )
         self.admin_user = CustomUser.objects.create_user(
             username='adminuser',
-            email='admin@tapone3.com',
+            email='admin@one3tap.com',
             password='adminpass123',
             user_type='admin'
         )
@@ -156,8 +156,8 @@ class ViewsTests(TestCase):
         """Test home page loads correctly"""
         response = self.client.get(reverse('main:home'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'TapOne3')
-        self.assertContains(response, 'NFC Business Cards')
+        self.assertContains(response, 'ONE3TAP')
+        self.assertContains(response, 'Digital Visiting Cards')
     
     def test_about_page(self):
         """Test about page loads correctly"""
@@ -250,7 +250,7 @@ class IntegrationTests(TestCase):
         # Test signup
         signup_data = {
             'username': 'integrationuser',
-            'email': 'integration@tapone3.com',
+            'email': 'integration@one3tap.com',
             'first_name': 'Integration',
             'last_name': 'User',
             'phone_number': '+1234567890',
@@ -264,7 +264,7 @@ class IntegrationTests(TestCase):
         
         # Verify user was created
         user = CustomUser.objects.get(username='integrationuser')
-        self.assertEqual(user.email, 'integration@tapone3.com')
+        self.assertEqual(user.email, 'integration@one3tap.com')
         self.assertTrue(user.is_active)
         
         # Verify profile was created
@@ -289,7 +289,7 @@ class IntegrationTests(TestCase):
         # Create admin user
         admin_user = CustomUser.objects.create_user(
             username='admintest',
-            email='admin@tapone3.com',
+            email='admin@one3tap.com',
             password='adminpass123',
             user_type='admin'
         )
@@ -297,7 +297,7 @@ class IntegrationTests(TestCase):
         # Create regular user
         regular_user = CustomUser.objects.create_user(
             username='regulartest',
-            email='regular@tapone3.com',
+            email='regular@one3tap.com',
             password='regularpass123'
         )
         

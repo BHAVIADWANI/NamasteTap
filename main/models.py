@@ -43,8 +43,8 @@ class UserProfile(models.Model):
         return f"{self.user.username}'s Profile"
 
 
-class NFCCard(models.Model):
-    """Model for physical NFC cards before registration"""
+class VisitingCard(models.Model):
+    """Model for physical visiting cards before registration"""
     CARD_TYPE_CHOICES = (
         ('pvc', 'PVC Card'),
         ('wood', 'Wood Card'),
@@ -88,7 +88,7 @@ class NFCCard(models.Model):
         """Generate a unique 16-character registration code"""
         while True:
             code = ''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(16))
-            if not NFCCard.objects.filter(registration_code=code).exists():
+            if not VisitingCard.objects.filter(registration_code=code).exists():
                 return code
     
     def get_registration_url(self):
@@ -106,10 +106,10 @@ class NFCCard(models.Model):
 
 
 class DigitalCard(models.Model):
-    """Digital business card linked to NFC card"""
+    """Digital business card linked to visiting card"""
     # Links
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='digital_cards')
-    nfc_card = models.OneToOneField(NFCCard, on_delete=models.CASCADE, related_name='digital_card')
+    visiting_card = models.OneToOneField(VisitingCard, on_delete=models.CASCADE, related_name='digital_card')
     
     # Unique URL identifier
     url_slug = models.SlugField(max_length=50, unique=True)

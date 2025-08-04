@@ -1,8 +1,8 @@
-# TapOne3 - Smart NFC Business Cards Platform
+# ONE3TAP - Smart Digital Visiting Cards Platform
 
 🚀 **One Tap, Three Connections** - The Future of Business Networking
 
-A Django web application for managing NFC-enabled digital business cards with role-based access control and comprehensive user management.
+A Django web application for managing digital visiting cards with role-based access control and comprehensive user management.
 
 ## ✨ Features
 
@@ -13,7 +13,7 @@ A Django web application for managing NFC-enabled digital business cards with ro
 - User dashboard with analytics
 
 ### 🎨 **Smart Interface**
-- Modern, responsive design with TapOne3 branding
+- Modern, responsive design with ONE3TAP branding
 - Role-based dashboards (Admin vs Standard users)
 - Real-time form validation
 - Mobile-friendly NFC-focused UI
@@ -24,8 +24,8 @@ A Django web application for managing NFC-enabled digital business cards with ro
 - Pagination and search functionality
 - Admin dashboard with insights
 
-### 🎯 **NFC Integration Ready**
-- Built for NFC business card functionality
+### 🎯 **Digital Integration Ready**
+- Built for digital visiting card functionality
 - Three profile system (Professional/Personal/Creative)
 - Analytics tracking foundation
 - Custom design capabilities
@@ -77,8 +77,8 @@ A Django web application for managing NFC-enabled digital business cards with ro
 ## 📁 Project Structure
 
 ```
-TapOne3/
-├── namaste_tap/          # Main Django project configuration
+ONE3TAP/
+├── one3tap/          # Main Django project configuration
 │   ├── settings.py       # Django settings with environment support
 │   ├── urls.py          # URL routing
 │   └── wsgi.py          # WSGI configuration
@@ -90,7 +90,7 @@ TapOne3/
 │   ├── urls.py          # App URL patterns
 │   └── tests.py         # Comprehensive test suite
 ├── templates/           # HTML templates
-│   ├── base.html        # Base template with TapOne3 branding
+│   ├── base.html        # Base template with ONE3TAP branding
 │   ├── home.html        # Landing page
 │   ├── about.html       # About page
 │   ├── services.html    # Services page
@@ -106,7 +106,7 @@ TapOne3/
 │       └── user_detail.html
 ├── static/             # Static files
 │   ├── css/
-│   │   └── style.css   # TapOne3 styling with NFC theme
+│   │   └── style.css   # ONE3TAP styling with NFC theme
 │   ├── js/
 │   │   └── main.js     # Interactive JavaScript
 │   └── images/         # Image assets
@@ -170,7 +170,7 @@ python manage.py collectstatic
 
 ### Running development server with different settings
 ```bash
-python manage.py runserver --settings=namaste_tap.settings_dev
+python manage.py runserver --settings=one3tap.settings_dev
 ```
 
 ## 🚢 Production Deployment
@@ -190,30 +190,30 @@ pip install gunicorn psycopg2-binary whitenoise
 ### Sample Production Commands
 ```bash
 # Database setup
-python manage.py migrate --settings=namaste_tap.settings_prod
+python manage.py migrate --settings=one3tap.settings_prod
 
 # Static files
-python manage.py collectstatic --settings=namaste_tap.settings_prod
+python manage.py collectstatic --settings=one3tap.settings_prod
 
 # Run with Gunicorn
-gunicorn namaste_tap.wsgi:application
+gunicorn one3tap.wsgi:application
 ```
 
 ## 🔮 Future Features
 
-### 🏷️ **TapOne3 Pro**
-- Physical NFC card integration
+### 🏷️ **ONE3TAP Pro**
+- Physical visiting card integration
 - Custom card design studio
 - Advanced analytics dashboard
 - CRM integrations
 
-### 🏢 **TapOne3 Teams**
+### 🏢 **ONE3TAP Teams**
 - Corporate account management
 - Team member management
 - Bulk card ordering
 - Company branding
 
-### 📊 **TapOne3 Analytics**
+### 📊 **ONE3TAP Analytics**
 - Contact interaction tracking
 - Networking insights
 - ROI analytics
@@ -235,17 +235,17 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **Documentation**: [Coming Soon]
 - **Issues**: [GitHub Issues](https://github.com/BHAVIADWANI/NamasteTap/issues)
-- **Email**: support@tapone3.com
+- **Email**: support@one3tap.com
 
 ## 🎯 Vision
 
-**TapOne3** aims to revolutionize business networking by making it as simple as a single tap. Our platform bridges the physical and digital worlds, creating meaningful connections in the age of NFC technology.
+**ONE3TAP** aims to revolutionize business networking by making it as simple as a single tap. Our platform bridges the physical and digital worlds, creating meaningful connections in the age of NFC technology.
 
 ---
 
 **Built with ❤️ for the future of networking**
 
-*TapOne3 - One Tap, Three Connections*
+*ONE3TAP - One Tap, Three Connections*
 
 ## Django Admin
 

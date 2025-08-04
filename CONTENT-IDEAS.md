@@ -1,4 +1,4 @@
-# Content Ideas - TapOne3 NFC Platform
+# Content Ideas - ONE3TAP Platform
 
 ## Website Content Strategy
 

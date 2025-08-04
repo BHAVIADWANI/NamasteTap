@@ -1,4 +1,4 @@
-# TapOne3 - Development Requirements
+# ONE3TAP - Development Requirements
 # Install with: pip install -r requirements-dev.txt
 
 # Include production requirements

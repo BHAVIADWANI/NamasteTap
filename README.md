@@ -231,9 +231,18 @@ gunicorn one3tap.wsgi:application
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## 📚 Documentation
+
+📖 **Comprehensive guides and resources are available in the [`docs/`](docs/) folder:**
+
+- **[Environment Setup](docs/ENVIRONMENT_SETUP.md)** - Complete development environment setup
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Production deployment instructions  
+- **[Project Documentation](docs/README.md)** - Full documentation index
+- **[Development Resources](docs/)** - Design specs, project ideas, and more
+
 ## 🆘 Support
 
-- **Documentation**: [Coming Soon]
+- **Documentation**: [docs/ folder](docs/) - Complete guides and resources
 - **Issues**: [GitHub Issues](https://github.com/BHAVIADWANI/ONE3TAP/issues)
 - **Email**: support@one3tap.com
 

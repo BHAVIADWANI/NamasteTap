@@ -2,7 +2,7 @@
 
 ## Method 1: .env File (Recommended) ✅
 Your project is already configured! Just edit the .env file:
-`c:\Users\BHAVESH\OneDrive\Documents\NamasteTap\.env`
+`c:\Users\BHAVESH\OneDrive\Documents\ONE3TAP\.env`
 
 ## Method 2: Windows Command Prompt (Temporary)
 ```cmd
@@ -92,4 +92,4 @@ python manage.py check --deploy
 ```
 
 ## ✅ Your .env file is already set up and working!
-Just update the values in: c:\Users\BHAVESH\OneDrive\Documents\NamasteTap\.env
+Just update the values in: c:\Users\BHAVESH\OneDrive\Documents\ONE3TAP\.env

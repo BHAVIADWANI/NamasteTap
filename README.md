@@ -41,8 +41,8 @@ A Django web application for managing digital visiting cards with role-based acc
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/BHAVIADWANI/NamasteTap.git
-   cd NamasteTap
+   git clone https://github.com/BHAVIADWANI/ONE3TAP.git
+   cd ONE3TAP
    ```
 
 2. **Install dependencies:**
@@ -234,7 +234,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🆘 Support
 
 - **Documentation**: [Coming Soon]
-- **Issues**: [GitHub Issues](https://github.com/BHAVIADWANI/NamasteTap/issues)
+- **Issues**: [GitHub Issues](https://github.com/BHAVIADWANI/ONE3TAP/issues)
 - **Email**: support@one3tap.com
 
 ## 🎯 Vision

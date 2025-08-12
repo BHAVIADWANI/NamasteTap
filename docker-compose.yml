@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: one3tap_db
+      POSTGRES_USER: one3tap_user
+      POSTGRES_PASSWORD: one3tap_password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U one3tap_user -d one3tap_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - one3tap_network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - one3tap_network
+
+  # Django Web Application
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - logs_volume:/app/logs
+    environment:
+      DEBUG: "False"
+      SECRET_KEY: "one3tap-super-secret-key-change-this-in-production-at-least-50-characters-long"
+      DATABASE_URL: "postgresql://one3tap_user:one3tap_password@db:5432/one3tap_db"
+      REDIS_URL: "redis://redis:6379/1"
+      ALLOWED_HOSTS: "localhost,127.0.0.1,0.0.0.0,yourdomain.com"
+      # Optional: Create superuser on startup
+      DJANGO_SUPERUSER_USERNAME: "admin"
+      DJANGO_SUPERUSER_EMAIL: "admin@one3tap.com"
+      DJANGO_SUPERUSER_PASSWORD: "admin123"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - one3tap_network
+
+  # Nginx Reverse Proxy (Optional for production)
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - static_volume:/app/staticfiles:ro
+      - media_volume:/app/media:ro
+      - ./ssl:/etc/nginx/ssl:ro  # For HTTPS certificates
+    depends_on:
+      - web
+    networks:
+      - one3tap_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  static_volume:
+    driver: local
+  media_volume:
+    driver: local
+  logs_volume:
+    driver: local
+
+networks:
+  one3tap_network:
+    driver: bridge

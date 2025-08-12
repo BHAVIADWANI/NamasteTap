@@ -103,12 +103,35 @@ WSGI_APPLICATION = 'one3tap.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# Default to SQLite for development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Use PostgreSQL if DATABASE_URL is provided (for production)
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    try:
+        import dj_database_url
+        DATABASES['default'] = dj_database_url.parse(DATABASE_URL)
+    except ImportError:
+        # If dj_database_url is not installed, parse manually for PostgreSQL
+        if DATABASE_URL.startswith('postgresql://'):
+            # Manual PostgreSQL configuration for production
+            # Format: postgresql://user:password@host:port/database
+            import urllib.parse as urlparse
+            url = urlparse.urlparse(DATABASE_URL)
+            DATABASES['default'] = {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': url.path[1:],
+                'USER': url.username,
+                'PASSWORD': url.password,
+                'HOST': url.hostname,
+                'PORT': url.port or 5432,
+            }
 
 
 # Password validation
@@ -150,6 +173,23 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+# Static files handling for production
+if not DEBUG:
+    # Use WhiteNoise for serving static files in production
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
+    # Optional: Use AWS S3 for static files (uncomment and configure)
+    # if os.environ.get('AWS_ACCESS_KEY_ID'):
+    #     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    #     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+    #     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    #     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    #     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    #     AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME', 'us-east-1')
+    #     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    #     AWS_DEFAULT_ACL = 'public-read'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

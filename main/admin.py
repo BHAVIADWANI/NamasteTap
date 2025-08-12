@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, UserProfile, VisitingCard, DigitalCard, CardAnalytics, CardOrder
+from .models import CustomUser, UserProfile, VisitingCard, DigitalCard, CardAnalytics, CardOrder, CompanyTemplate
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
@@ -116,6 +116,40 @@ class CardOrderAdmin(admin.ModelAdmin):
             'fields': ('shipped_date', 'delivered_date', 'tracking_number', 'notes')
         }),
     )
+
+
+@admin.register(CompanyTemplate)
+class CompanyTemplateAdmin(admin.ModelAdmin):
+    list_display = ('name', 'template_type', 'is_active', 'is_premium', 'created_at')
+    list_filter = ('template_type', 'is_active', 'is_premium', 'created_at')
+    search_fields = ('name', 'description')
+    readonly_fields = ('slug', 'template_folder', 'created_at', 'updated_at')
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('name', 'slug', 'template_type', 'description')
+        }),
+        ('Template Configuration', {
+            'fields': ('primary_color', 'secondary_color', 'font_family')
+        }),
+        ('Template Content', {
+            'fields': ('html_template', 'css_content', 'js_content'),
+            'classes': ('collapse',)
+        }),
+        ('Settings', {
+            'fields': ('is_active', 'is_premium', 'thumbnail')
+        }),
+        ('System Fields', {
+            'fields': ('template_folder', 'created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+    
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        # Create template files when saving
+        obj.create_template_files()
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(UserProfile)

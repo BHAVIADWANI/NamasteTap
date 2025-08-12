@@ -60,13 +60,13 @@ def view_card(request, slug):
         )
         digital_card.increment_view_count()
     
-    context = {
-        'card': digital_card,
-        'social_links': digital_card.get_social_links(),
-        'custom_links': digital_card.custom_links,
-    }
+    # Get template context
+    context = digital_card.get_template_context()
     
-    return render(request, 'cards/view_card.html', context)
+    # Use company template if available, otherwise default
+    template_path = digital_card.get_template_path()
+    
+    return render(request, template_path, context)
 
 
 @login_required

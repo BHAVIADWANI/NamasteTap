@@ -20,7 +20,7 @@
                 <span class="text-gradient">ONE3TAP</span>
             </a>
             
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
@@ -105,7 +105,7 @@
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
                     {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close alert"></button>
                 </div>
             {% endfor %}
         </div>
@@ -120,16 +120,16 @@
     <!-- Footer -->
     <footer class="py-5" style="background: var(--matrix-gradient); border-top: 2px solid transparent; border-image: var(--neon-gradient) 1; position: relative; overflow: hidden;">
         <!-- Futuristic Footer Background -->
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 0%, rgba(0, 212, 255, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
+        <div class="footer-glow-overlay"></div>
         
         <div class="container position-relative">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="mb-3 d-flex align-items-center">
-                        <i class="fas fa-wifi me-3 text-neon" style="font-size: 2rem; animation: quantumSpin 3s linear infinite;"></i>
-                        <span class="text-gradient fs-2 fw-bold" style="font-family: 'Orbitron', monospace;">ONE3TAP</span>
+                        <i class="fas fa-wifi me-3 text-neon brand-icon-animated"></i>
+                        <span class="text-gradient fs-2 fw-bold brand-text-orbitron">ONE3TAP</span>
                     </div>
-                    <p class="text-muted mb-0" style="font-size: 1.1rem;">
+                    <p class="text-muted mb-0 footer-tagline">
                         <span class="text-electric">One Tap</span>, <span class="text-neon">Three Connections</span> - The Future of Business Networking
                     </p>
                 </div>

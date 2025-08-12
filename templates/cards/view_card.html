@@ -80,7 +80,7 @@
                             Save Contact
                         </a>
                         
-                        <button onclick="shareCard()" class="btn btn-outline-primary btn-block mb-3">
+                        <button onclick="shareCard()" class="btn btn-outline-primary btn-block mb-3" aria-label="Share this digital card">
                             <i class="fas fa-share-alt me-2"></i>
                             Share Card
                         </button>
@@ -126,7 +126,7 @@
             
             <!-- QR Code Fallback -->
             <div class="text-center mt-4">
-                <button onclick="generateQR()" class="btn btn-link text-muted">
+                <button onclick="generateQR()" class="btn btn-link text-muted" aria-label="Generate QR code for this card">
                     <i class="fas fa-qrcode me-2"></i>
                     Show QR Code
                 </button>
@@ -331,11 +331,11 @@ function generateQR() {
     
     const qrModal = document.createElement('div');
     qrModal.innerHTML = `
-        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;" onclick="this.remove()">
-            <div style="background: white; padding: 2rem; border-radius: 15px; text-align: center;">
-                <h5 style="color: #333; margin-bottom: 1rem;">Scan QR Code</h5>
-                <img src="${qrUrl}" alt="QR Code" style="max-width: 200px;">
-                <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">Tap anywhere to close</p>
+        <div class="qr-modal-overlay" onclick="this.remove()">
+            <div class="qr-modal-content">
+                <h5 class="qr-modal-title">Scan QR Code</h5>
+                <img src="${qrUrl}" alt="QR Code" class="qr-modal-image">
+                <p class="qr-modal-close-text">Tap anywhere to close</p>
             </div>
         </div>
     `;

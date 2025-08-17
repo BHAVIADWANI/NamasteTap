@@ -1,0 +1,42 @@
+# Development Dockerfile for ONE3TAP
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV DJANGO_SETTINGS_MODULE=one3tap.settings
+
+# Set the working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        postgresql-client \
+        gcc \
+        python3-dev \
+        libpq-dev \
+        curl \
+        netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
+
+# Create necessary directories
+RUN mkdir -p /app/staticfiles /app/media /app/logs
+
+# Create non-root user for development
+RUN adduser --disabled-password --gecos '' devuser \
+    && chown -R devuser:devuser /app
+
+# Don't switch to non-root user in development for easier file permissions
+# USER devuser
+
+# Expose the port
+EXPOSE 8000
+
+# Default command for development
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

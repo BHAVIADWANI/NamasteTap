@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Jan Suvidha Kendra - Digital Visiting Card</title>
+    <link rel="stylesheet" href="{% load static %}{% static 'company_templates/master-jan-suvidha/css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans+Gujarati:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="card-container">
+        <!-- Front Side of Card -->
+        <div class="card-front">
+            <!-- Header with Government Branding -->
+            <div class="header-section">
+                <div class="government-badge">
+                    <div class="digital-india-logo">
+                        <i class="fas fa-wifi"></i>
+                        <span>Digital India</span>
+                        <small>Power To Empower</small>
+                    </div>
+                </div>
+                <div class="contact-number">
+                    <i class="fas fa-phone"></i>
+                    <span>Mob. 9427952261</span>
+                </div>
+            </div>
+
+            <!-- Main Logo and Title Section -->
+            <div class="main-section">
+                <div class="logo-container">
+                    <div class="master-logo">
+                        <div class="logo-icon">M</div>
+                        <div class="logo-text">
+                            <span class="brand-name">MASTER</span>
+                            <span class="subtitle">Jan Suvidha</span>
+                            <span class="subtitle-2">KENDRA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="csc-branding">
+                    <div class="csc-logo">CSC</div>
+                    <div class="csc-text">
+                        <span>e-Governance Services India Limited</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-section">
+                <div class="services-title">તમામ પ્રકારની ઓનલાઇન સર્વિસ</div>
+                <div class="services-grid">
+                    <div class="service-item yellow">આધાર - કાર્ડ</div>
+                    <div class="service-item white">વોટર કનેક્શન</div>
+                    <div class="service-item blue">પાન કાર્ડ</div>
+                    <div class="service-item red">પાસપોર્ટ</div>
+                    <div class="service-item green">વિઝા અપ્લિકેશન</div>
+                    <div class="service-item black">FASTag</div>
+                    <div class="service-item purple">જન્મ પ્રમાણપત્ર</div>
+                    <div class="service-item cyan">ઈન્કમ-ટેક્સ</div>
+                    <div class="service-item dark-blue">રેલ્વે-બસ ટિકિટ</div>
+                    <div class="service-item maroon">જાત-ટિકિટ</div>
+                    <div class="service-item yellow-2">બાઇક - ગેસ બિલ</div>
+                    <div class="service-item brown">કંપની બાઇસાઇકલ</div>
+                    <div class="service-item gray">RESUME - BIO-DATA</div>
+                    <div class="service-item magenta">Mobile Print</div>
+                    <div class="service-item orange">કાર્ડ કવર - ફંક્શની</div>
+                    <div class="service-item navy">વર્ડિંગ કાર્ડ</div>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="address-section">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Gujarat Housing Board ની પાસે, રેલ્વે ફાટક પહેલા, મંજીપુરા રોડ, નડિયાદ.</span>
+            </div>
+        </div>
+
+        <!-- Back Side of Card -->
+        <div class="card-back">
+            <div class="back-header">
+                <h2>Master Jan Suvidha Kendra</h2>
+                <p>All Types of Online Services</p>
+            </div>
+
+            <div class="owner-info">
+                <div class="owner-name">{{ card.owner_name|default:"Baljit Singh" }}</div>
+                <div class="owner-title">Center Operator</div>
+            </div>
+
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>{{ card.phone|default:"+91 9427952261" }}</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>{{ card.email|default:"masterjansuvidha@gmail.com" }}</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>{{ card.website|default:"www.csc.gov.in" }}</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>{{ card.address|default:"770, Guru Nanak Nagar, Opp. Gujarat Housing Board, Nr. Railway Fatak, Manjipura Road, Nadiad - 387 001" }}</span>
+                </div>
+            </div>
+
+            <div class="services-list">
+                <h3>Our Services Include:</h3>
+                <div class="services-columns">
+                    <div class="column">
+                        <ul>
+                            <li>Aadhaar Card Services</li>
+                            <li>PAN Card Application</li>
+                            <li>Passport Services</li>
+                            <li>Water Connection</li>
+                            <li>Visa Application</li>
+                            <li>FASTag Services</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <ul>
+                            <li>Birth Certificate</li>
+                            <li>Income Tax Services</li>
+                            <li>Railway/Bus Tickets</li>
+                            <li>Utility Bill Payments</li>
+                            <li>Resume/Bio-data</li>
+                            <li>Mobile/Computer Services</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="qr-section">
+                <div class="qr-code">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <div class="qr-text">
+                    <p>Scan QR Code</p>
+                    <p>for Digital Card</p>
+                </div>
+            </div>
+
+            <div class="footer-branding">
+                <div class="digital-india-footer">
+                    <i class="fas fa-wifi"></i>
+                    <span>Digital India - Power To Empower</span>
+                </div>
+                <div class="csc-footer">
+                    <span>Authorized CSC Center</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flip Button -->
+    <div class="flip-controls">
+        <button onclick="flipCard()" class="flip-btn">
+            <i class="fas fa-sync-alt"></i>
+            Flip Card
+        </button>
+    </div>
+
+    <script src="{% static 'company_templates/master-jan-suvidha/js/script.js' %}"></script>
+</body>
+</html>

@@ -59,10 +59,10 @@
             
             <!-- Cards Grid -->
             {% if cards %}
-                <div class="row">
+                <div class="card-grid">
                     {% for card in cards %}
-                        <div class="col-lg-6 col-xl-4 mb-4">
-                            <div class="card-item h-100">
+                        <div>
+                            <div class="card-item card h-100">
                                 <div class="card-preview">
                                     {% if card.profile_image %}
                                         <img src="{{ card.profile_image.url }}" alt="{{ card.display_name }}" class="card-avatar">
@@ -206,23 +206,24 @@
 }
 
 .card-item {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: none;
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(255,255,255,0.04);
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .card-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow: var(--glow-hover);
+    border-color: rgba(0,168,255,0.12);
 }
 
 .card-preview {
     padding: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--primary-gradient);
+    color: var(--text-primary);
     text-align: center;
     position: relative;
 }
@@ -232,7 +233,7 @@
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.12);
     margin-bottom: 1rem;
 }
 
@@ -240,13 +241,13 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--bg-card-hover);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1rem;
     font-size: 2rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-primary);
 }
 
 .card-name {
@@ -294,7 +295,7 @@
 
 .card-stats {
     padding: 1rem 1.5rem;
-    background: #f8f9fa;
+    background: var(--bg-card);
     display: flex;
     justify-content: space-between;
     align-items: center;

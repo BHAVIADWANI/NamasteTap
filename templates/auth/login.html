@@ -22,7 +22,8 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                
+
+                <div class="card glass p-4">
                 <form method="post" class="auth-form">
                     {% csrf_token %}
                     <div class="form-group">
@@ -65,7 +66,7 @@
                         <i class="fas fa-sign-in-alt"></i> Sign In
                     </button>
                 </form>
-                
+                </div>
                 <div class="auth-footer">
                     <p>Don't have an account? <a href="{% url 'main:signup' %}">Sign up here</a></p>
                 </div>
@@ -78,6 +79,7 @@
                     <span>Access your personalized dashboard</span>
                 </div>
                 <div class="info-item">
+                                            </div>
                     <i class="fas fa-check-circle"></i>
                     <span>Manage your profile and settings</span>
                 </div>

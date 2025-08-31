@@ -23,10 +23,10 @@
                     </div>
                 {% endif %}
                 
-                <form method="post" class="auth-form">
-                    {% csrf_token %}
-                    
-                    <div class="form-row">
+        <div class="card glass p-4">
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            <div class="form-row">
                         <div class="form-group">
                             <label for="{{ form.first_name.id_for_label }}">
                                 <i class="fas fa-user"></i> First Name
@@ -154,7 +154,7 @@
                         <i class="fas fa-user-plus"></i> Create Account
                     </button>
                 </form>
-                
+                </div>
                 <div class="auth-footer">
                     <p>Already have an account? <a href="{% url 'main:login' %}">Sign in here</a></p>
                 </div>

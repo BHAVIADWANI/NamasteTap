@@ -1,9 +1,111 @@
-{% extends "base.html" %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE3TAP - Smart Digital Visiting Cards</title>
+    
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+<style>
+.hero-section {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
 
-{% block title %}ONE3TAP - Smart Digital Visiting Cards{% endblock %}
+.min-vh-50 {
+    min-height: 50vh;
+}
 
-{% block content %}
+.hero-image {
+    position: relative;
+    display: inline-block;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .hero-section {
+        padding: 3rem 0;
+    }
+}
+</style>
+
+</head>
+<body data-theme="dark">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <i class="fas fa-wifi me-2"></i>
+                <span class="text-gradient">ONE3TAP</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about/" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/services/" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center gap-2">
+                    <!-- Theme toggle -->
+                    <button id="themeToggle" class="btn btn-outline" aria-label="Toggle theme" title="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                <ul class="navbar-nav d-flex align-items-center">
+                    
+                    <li class="nav-item">
+                        <a href="/login/" class="nav-link login-link">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/signup/" class="nav-link signup-link">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </a>
+                    </li>
+                
+                </ul>
+                </div>
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    
+
+    <!-- Main Content -->
+    <main>
+        
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
@@ -17,7 +119,7 @@
                     Transform your networking with intelligent digital business cards. Share your contact details instantly with a simple tap.
                 </p>
                 <div class="d-flex flex-wrap gap-3 mb-4">
-                    <a href="{% url 'main:signup' %}" class="btn btn-primary btn-lg">
+                    <a href="/signup/" class="btn btn-primary btn-lg">
                         <i class="fas fa-rocket me-2"></i>Get Started
                     </a>
                     <a href="#how-it-works" class="btn btn-outline btn-lg">
@@ -42,7 +144,7 @@
             </div>
             <div class="col-lg-6 text-center">
                 <div class="hero-image card p-3 glass">
-                    <img src="{% static 'images/hero/futuristic-nfc.svg' %}" alt="Digital Visiting Card Technology" class="img-fluid" style="max-height: 500px;">
+                    <img src="/static/images/hero/futuristic-nfc.svg" alt="Digital Visiting Card Technology" class="img-fluid" style="max-height: 500px;">
                 </div>
             </div>
         </div>
@@ -141,7 +243,7 @@
             </div>
         </div>
         <div class="text-center mt-5">
-            <a href="{% url 'main:signup' %}" class="btn btn-primary btn-lg">
+            <a href="/signup/" class="btn btn-primary btn-lg">
                 <i class="fas fa-rocket me-2"></i>Get Started Now
             </a>
         </div>
@@ -161,7 +263,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <img src="{% static 'images/icons/nfc-technology.svg' %}" alt="NFC Technology" class="img-fluid floating" style="max-width: 80px;">
+                        <img src="/static/images/icons/nfc-technology.svg" alt="NFC Technology" class="img-fluid floating" style="max-width: 80px;">
                     </div>
                     <div class="col-9">
                         <h5 class="text-gradient">NFC Technology</h5>
@@ -172,7 +274,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <img src="{% static 'images/icons/digital-profiles.svg' %}" alt="Digital Profiles" class="img-fluid floating" style="max-width: 80px; animation-delay: 0.5s;">
+                        <img src="/static/images/icons/digital-profiles.svg" alt="Digital Profiles" class="img-fluid floating" style="max-width: 80px; animation-delay: 0.5s;">
                     </div>
                     <div class="col-9">
                         <h5 class="text-gradient">Digital Profiles</h5>
@@ -183,7 +285,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <img src="{% static 'images/features/analytics-dashboard.svg' %}" alt="Analytics Dashboard" class="img-fluid floating" style="max-width: 80px; animation-delay: 1s;">
+                        <img src="/static/images/features/analytics-dashboard.svg" alt="Analytics Dashboard" class="img-fluid floating" style="max-width: 80px; animation-delay: 1s;">
                     </div>
                     <div class="col-9">
                         <h5 class="text-gradient">Analytics Dashboard</h5>
@@ -194,7 +296,7 @@
             <div class="col-lg-6 mb-4">
                 <div class="row align-items-center">
                     <div class="col-3">
-                        <img src="{% static 'images/icons/custom-branding.svg' %}" alt="Custom Branding" class="img-fluid floating" style="max-width: 80px; animation-delay: 1.5s;">
+                        <img src="/static/images/icons/custom-branding.svg" alt="Custom Branding" class="img-fluid floating" style="max-width: 80px; animation-delay: 1.5s;">
                     </div>
                     <div class="col-9">
                         <h5 class="text-gradient">Custom Branding</h5>
@@ -230,7 +332,7 @@
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Basic analytics</li>
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>NFC + QR code</li>
                         </ul>
-                        <a href="{% url 'main:signup' %}" class="btn btn-outline-primary">Get Started</a>
+                        <a href="/signup/" class="btn btn-outline-primary">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -251,7 +353,7 @@
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Advanced analytics</li>
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Custom branding</li>
                         </ul>
-                        <a href="{% url 'main:signup' %}" class="btn btn-primary">Get Started</a>
+                        <a href="/signup/" class="btn btn-primary">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -269,7 +371,7 @@
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Priority support</li>
                             <li class="mb-2"><i class="fas fa-check text-success me-2"></i>API access</li>
                         </ul>
-                        <a href="{% url 'main:contact' %}" class="btn btn-outline-primary">Contact Sales</a>
+                        <a href="/contact/" class="btn btn-outline-primary">Contact Sales</a>
                     </div>
                 </div>
             </div>
@@ -286,50 +388,47 @@
                 <p class="mb-0">Join hundreds of professionals who have upgraded to smart business cards.</p>
             </div>
             <div class="col-lg-4 text-end">
-                <a href="{% url 'main:signup' %}" class="btn btn-light btn-lg">
+                <a href="/signup/" class="btn btn-light btn-lg">
                     <i class="fas fa-arrow-right me-2"></i>Get Your Smart Card
                 </a>
             </div>
         </div>
     </div>
 </section>
-{% endblock %}
 
-{% block extra_css %}
-<style>
-.hero-section {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-}
+    </main>
 
-.min-vh-50 {
-    min-height: 50vh;
-}
+    <!-- Footer -->
+    <footer class="py-5" style="background: var(--matrix-gradient); border-top: 2px solid transparent; border-image: var(--neon-gradient) 1; position: relative; overflow: hidden;">
+        <!-- Futuristic Footer Background -->
+        <div class="footer-glow-overlay"></div>
+        
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-wifi me-3 text-neon brand-icon-animated"></i>
+                        <span class="text-gradient fs-2 fw-bold brand-text-orbitron">ONE3TAP</span>
+                    </div>
+                    <p class="text-muted mb-0 footer-tagline">
+                        <span class="text-electric">One Tap</span>, <span class="text-neon">Three Connections</span> - The Future of Business Networking
+                    </p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <div class="text-muted">
+                        © 2025 <span class="text-gradient">ONE3TAP</span>. All rights reserved.
+                    </div>
+                    <div class="mt-2">
+                        <small class="text-electric">Powered by Quantum Technology</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-.hero-image {
-    position: relative;
-    display: inline-block;
-}
-
-.card {
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.bg-primary {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
-}
-
-@media (max-width: 768px) {
-    .display-4 {
-        font-size: 2rem;
-    }
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
     
-    .hero-section {
-        padding: 3rem 0;
-    }
-}
-</style>
-{% endblock %}
+</body>
+</html>

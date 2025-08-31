@@ -170,8 +170,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Ensure static directories exist
+STATIC_DIR = BASE_DIR / 'static'
+STATIC_DIR.mkdir(exist_ok=True)
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    STATIC_DIR,
 ]
 
 # Static files handling for production
@@ -199,6 +204,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Ensure media directory exists
+MEDIA_ROOT.mkdir(exist_ok=True)
 
 # Custom User Model
 AUTH_USER_MODEL = 'main.CustomUser'
@@ -229,6 +237,13 @@ if not DEBUG:
     }
 
 # Logging Configuration
+import os
+from pathlib import Path
+
+# Ensure logs directory exists
+LOGS_DIR = BASE_DIR / 'logs'
+LOGS_DIR.mkdir(exist_ok=True)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -246,7 +261,7 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'django.log',
+            'filename': LOGS_DIR / 'django.log',
             'formatter': 'verbose',
         },
         'console': {
@@ -261,8 +276,8 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file', 'console'],
-            'level': 'INFO',
+            'handlers': ['console'] if DEBUG else ['file', 'console'],
+            'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': False,
         },
     },
